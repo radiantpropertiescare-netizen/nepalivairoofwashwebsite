@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Nepali Vai Roof Wash | Premium Roof Care &amp; Preservation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#191c1d",
+                        "secondary": "#3e5ca3",
+                        "surface-dim": "#d9dadb",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#9dcee3",
+                        "tertiary-fixed": "#bbeaff",
+                        "on-secondary-fixed-variant": "#244389",
+                        "on-secondary-container": "#224288",
+                        "surface-tint": "#c00007",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e1e3e4",
+                        "outline": "#926f6a",
+                        "primary-container": "#e52920",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#dae2ff",
+                        "surface-container-low": "#f3f4f5",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#001847",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffdad5",
+                        "on-background": "#191c1d",
+                        "on-primary-fixed-variant": "#930004",
+                        "primary": "#c00007",
+                        "surface": "#f8f9fa",
+                        "tertiary-container": "#4d7d91",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-fixed": "#001f29",
+                        "inverse-surface": "#2e3132",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary-fixed-variant": "#174c5f",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#140000",
+                        "tertiary": "#336477",
+                        "secondary-fixed-dim": "#b2c5ff",
+                        "background": "#f8f9fa",
+                        "outline-variant": "#e7bdb7",
+                        "on-primary-fixed": "#410001",
+                        "surface-container": "#edeeef",
+                        "primary-fixed-dim": "#ffb4a9",
+                        "secondary-container": "#95b1ff",
+                        "on-surface-variant": "#5d3f3b",
+                        "inverse-primary": "#ffb4a9",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-tertiary-container": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .bento-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(62, 92, 163, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed">
+    <!-- TopNavBar -->
+    <header class="fixed top-0 w-full z-50 bg-white">
+        <nav class="flex justify-between items-center w-full px-4 md:px-12 py-4 bg-white relative z-50">
+            <div class="flex items-center gap-3">
+                <img alt="Nepali Vai Roof Wash Logo" class="h-14 md:h-16 w-auto object-contain" src="images/logo.png">
+                <span
+                    class="font-headline font-extrabold text-xl md:text-2xl text-[#191c1d] tracking-tight whitespace-nowrap">Nepali
+                    Vai Roof Wash</span>
+            </div>
+            <div class="hidden lg:flex items-center gap-10">
+                <a class="font-headline font-bold text-base text-[#5d6b82] hover:text-[#5d6b82] transition-colors"
+                    href="index.html">Home</a>
+                <a class="font-headline font-bold text-base text-[#5d6b82] hover:text-[#5d6b82] transition-colors"
+                    href="about.html">About Us</a>
+                <a class="font-headline font-bold text-base text-[#5d6b82] hover:text-[#5d6b82] transition-colors"
+                    href="services.html">Services</a>
+                <a class="font-headline font-bold text-base text-[#5d6b82] hover:text-[#5d6b82] transition-colors"
+                    href="process.html">Our Process</a>
+                <a class="font-headline font-bold text-base text-[#5d6b82] hover:text-[#5d6b82] transition-colors"
+                    href="contact.html">Contact Us</a>
+            </div>
+            <div class="hidden lg:block">
+                <button
+                    class="bg-[#e52920] text-white px-8 py-3 rounded-xl font-headline font-bold text-sm tracking-wide hover:bg-[#c00007] transition-all shadow-md"
+                    onclick="window.location.href='contact.html'">Get Quote </button>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-on-surface p-2 z-50">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+        </nav>
+        <div class="bg-[#f3f4f5] dark:bg-gray-900 h-[1px] w-full relative z-50"></div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 flex flex-col pt-24 px-8 pb-8 overflow-y-auto lg:hidden">
+            <a class="font-headline font-bold text-2xl text-[#5d6b82] py-4 border-b border-surface-variant"
+                href="index.html">Home</a>
+            <a class="font-headline font-bold text-2xl text-[#5d6b82] hover:text-[#5d6b82] py-4 border-b border-surface-variant"
+                href="about.html">About Us</a>
+            <a class="font-headline font-bold text-2xl text-[#5d6b82] hover:text-[#5d6b82] py-4 border-b border-surface-variant"
+                href="services.html">Services</a>
+            <a class="font-headline font-bold text-2xl text-[#5d6b82] hover:text-[#5d6b82] py-4 border-b border-surface-variant"
+                href="process.html">Our Process</a>
+            <a class="font-headline font-bold text-2xl text-[#5d6b82] hover:text-[#5d6b82] py-4 border-b border-surface-variant"
+                href="contact.html">Contact Us</a>
+            <div class="mt-8">
+                <button
+                    class="w-full bg-[#e52920] text-white px-8 py-4 rounded-xl font-headline font-bold text-lg tracking-wide hover:bg-[#c00007] transition-all shadow-md"
+                    onclick="window.location.href='contact.html'">Get Quote</button>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const btn = document.getElementById('mobile-menu-btn');
+                const menu = document.getElementById('mobile-menu');
+                if (!btn || !menu) return;
+                const icon = btn.querySelector('.material-symbols-outlined');
+                let isOpen = false;
+
+                btn.addEventListener('click', () => {
+                    isOpen = !isOpen;
+                    if (isOpen) {
+                        menu.classList.remove('translate-x-full');
+                        icon.textContent = 'close';
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        menu.classList.add('translate-x-full');
+                        icon.textContent = 'menu';
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+        </script>
+    </header>
+    <main class="pt-32">
+        <!-- Hero Section -->
+        <section class="relative min-h-[870px] flex items-center overflow-hidden bg-surface-container-low">
+            <div class="absolute inset-0 z-0 bento-pattern opacity-40"></div>
+            <div class="max-w-7xl mx-auto px-8 w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-2 bg-tertiary-fixed-dim/20 px-3 py-1 rounded-full">
+                        <span class="material-symbols-outlined text-secondary text-sm"
+                            style="font-variation-settings: &quot;FILL&quot; 1;">verified</span>
+                        <span class="text-xs font-label font-bold uppercase tracking-widest text-secondary">Expert Roof
+                            Preservation</span>
+                    </div>
+                    <h1
+                        class="font-headline text-6xl md:text-7xl font-extrabold tracking-[-0.03em] leading-tight text-on-surface">
+                        Expert Roof Restoration That Protects and Extends the Life of Your Home.</h1>
+                    <p class="text-lg text-on-surface/70 max-w-lg leading-relaxed">
+                        Extend the life of your roof, improve its appearance, and avoid costly replacements with trusted
+                        local specialists.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button
+                            class="bg-primary-container hover:bg-primary text-on-primary px-8 py-4 rounded-xl font-headline font-bold text-base transition-all flex items-center gap-2 shadow-xl shadow-primary/10"
+                            onclick="window.location.href='contact.html'">Get Quote <span
+                                class="material-symbols-outlined">arrow_forward</span></button>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-4 bg-primary/5 rounded-[2rem] transform rotate-3 transition-transform group-hover:rotate-1">
+                    </div>
+                    <div class="relative aspect-square rounded-[1.5rem] overflow-hidden shadow-2xl">
+                        <img alt="Professional Blue Roof Restoration Finish" class="w-full h-full object-cover"
+                            src="images/Blueroof.JPG">
+                        <div
+                            class="absolute bottom-6 right-6 bg-surface-container-lowest/90 backdrop-blur-md p-4 rounded-xl border border-outline-variant/20 shadow-lg">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-on-secondary">
+                                    <span class="material-symbols-outlined"
+                                        style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-secondary uppercase tracking-tighter">Top Rated</p>
+                                    <p class="text-sm font-headline font-extrabold">5.0 Rating in Sydney</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Trust Strip -->
+        <section class="bg-secondary py-10">
+            <div class="max-w-7xl mx-auto px-8 flex flex-wrap justify-between items-center gap-8 opacity-90">
+                <div class="flex items-center gap-4 text-white">
+                    <span class="material-symbols-outlined text-4xl">home_repair_service</span>
+                    <div>
+                        <p class="font-headline font-black text-2xl leading-none">500+</p>
+                        <p class="text-xs uppercase tracking-widest text-tertiary-fixed-dim">Roofs Restored</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 text-white">
+                    <span class="material-symbols-outlined text-4xl">verified_user</span>
+                    <div>
+                        <p class="font-headline font-black text-2xl leading-none">10yr</p>
+                        <p class="text-xs uppercase tracking-widest text-tertiary-fixed-dim">Warranty Provided</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 text-white">
+                    <span class="material-symbols-outlined text-4xl">eco</span>
+                    <div>
+                        <p class="font-headline font-black text-2xl leading-none">Eco</p>
+                        <p class="text-xs uppercase tracking-widest text-tertiary-fixed-dim">Friendly Solutions</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 text-white">
+                    <span class="material-symbols-outlined text-4xl">thumb_up</span>
+                    <div>
+                        <p class="font-headline font-black text-2xl leading-none">100%</p>
+                        <p class="text-xs uppercase tracking-widest text-tertiary-fixed-dim">Satisfaction rate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Services Bento Grid -->
+        <section class="py-24 bg-surface px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 space-y-4">
+                    <h2 class="text-sm font-label font-bold uppercase tracking-[0.2em] text-primary">Ready to refresh
+                        your home's crown?</h2>
+                    <h3 class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface">Roof Restoration
+                        Services</h3>
+                </div>
+                <!-- Main Services 2x2 Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Roof Washing -->
+                    <div
+                        class="bg-surface-container-lowest p-0 rounded-2xl overflow-hidden group border border-outline-variant/10 hover:border-primary/20 transition-all flex flex-col md:flex-row h-full shadow-sm hover:shadow-xl">
+                        <div class="flex-1 p-8 space-y-4 flex flex-col justify-center">
+                            <div
+                                class="w-12 h-12 bg-primary-container text-on-primary flex items-center justify-center rounded-xl mb-2">
+                                <span class="material-symbols-outlined">water_drop</span>
+                            </div>
+                            <h4 class="text-2xl font-headline font-extrabold">Roof Washing</h4>
+                            <p class="text-on-surface/70 text-sm leading-relaxed">Deep removal of moss, lichen, and
+                                algae using our professional roof-wash system — restoring your roof to a clean, like-new
+                                finish.</p>
+                        </div>
+                        <div class="flex-1 min-h-[250px] relative overflow-hidden">
+                            <img alt="Roof Washing"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                src="images/roofwashing-home.jpeg">
+                        </div>
+                    </div>
+                    <!-- Roof Painting -->
+                    <div
+                        class="bg-surface-container-lowest p-0 rounded-2xl overflow-hidden group border border-outline-variant/10 hover:border-primary/20 transition-all flex flex-col md:flex-row h-full shadow-sm hover:shadow-xl">
+                        <div class="flex-1 p-8 space-y-4 flex flex-col justify-center">
+                            <div
+                                class="w-12 h-12 bg-secondary text-white flex items-center justify-center rounded-xl mb-2">
+                                <span class="material-symbols-outlined">format_paint</span>
+                            </div>
+                            <h4 class="text-2xl font-headline font-extrabold">Roof Painting</h4>
+                            <p class="text-on-surface/70 text-sm leading-relaxed">Premium thermal coatings that protect
+                                against UV and enhance curb appeal with a wide range of architectural colors designed
+                                for durability.</p>
+                        </div>
+                        <div class="flex-1 min-h-[250px] relative overflow-hidden">
+                            <img alt="Roof Painting"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                src="images/roofpainting-home.JPG">
+                        </div>
+                    </div>
+                    <!-- Repointing -->
+                    <div
+                        class="bg-surface-container-lowest p-0 rounded-2xl overflow-hidden group border border-outline-variant/10 hover:border-primary/20 transition-all flex flex-col md:flex-row h-full shadow-sm hover:shadow-xl">
+                        <div class="flex-1 p-8 space-y-4 flex flex-col justify-center">
+                            <div
+                                class="w-12 h-12 bg-tertiary-fixed-dim text-on-tertiary-fixed-variant flex items-center justify-center rounded-xl mb-2">
+                                <span class="material-symbols-outlined">architecture</span>
+                            </div>
+                            <h4 class="text-2xl font-headline font-extrabold">Repointing</h4>
+                            <p class="text-on-surface/70 text-sm leading-relaxed">Essential structural care to secure
+                                ridge caps and prevent water ingress. We use flexible, high-quality pointing materials.
+                            </p>
+                        </div>
+                        <div class="flex-1 min-h-[250px] relative overflow-hidden">
+                            <img alt="Repointing Detail"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                src="images/roof-repointing-home.png">
+                        </div>
+                    </div>
+                    <!-- Gutter Guard -->
+                    <div
+                        class="bg-surface-container-lowest p-0 rounded-2xl overflow-hidden group border border-outline-variant/10 hover:border-primary/20 transition-all flex flex-col md:flex-row h-full shadow-sm hover:shadow-xl">
+                        <div class="flex-1 p-8 space-y-4 flex flex-col justify-center">
+                            <div
+                                class="w-12 h-12 bg-surface-container-high text-on-surface flex items-center justify-center rounded-xl mb-2">
+                                <span class="material-symbols-outlined">filter_list</span>
+                            </div>
+                            <h4 class="text-2xl font-headline font-extrabold">Gutter Guard Installation</h4>
+                            <p class="text-on-surface/70 text-sm leading-relaxed">Advanced zero-clog systems that keep
+                                debris out of your gutters, ensuring proper water flow and safety.</p>
+                        </div>
+                        <div class="flex-1 min-h-[250px] relative overflow-hidden">
+                            <img alt="Gutter Guard Installation"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                src="images/Gutterguard-home.png">
+                        </div>
+                    </div>
+                </div>
+                <!-- Secondary Services 3-Column Row -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- House Washing -->
+                    <div
+                        class="bg-surface-container-low p-6 rounded-2xl group hover:shadow-xl transition-all border border-transparent hover:border-outline-variant/10">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div
+                                class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm text-primary group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined">cleaning_services</span>
+                            </div>
+                            <div>
+                                <h4 class="font-headline font-bold text-lg">House Washing</h4>
+                                <p class="text-xs text-on-surface/60 uppercase tracking-widest font-bold">Exterior Soft
+                                    Wash</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl overflow-hidden aspect-[16/10]">
+                            <img alt="House Washing"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                src="images/househousing-home.png">
+                        </div>
+                    </div>
+                    <!-- Bird Proofing -->
+                    <div
+                        class="bg-surface-container-low p-6 rounded-2xl group hover:shadow-xl transition-all border border-transparent hover:border-outline-variant/10">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div
+                                class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm text-secondary group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined">pest_control</span>
+                            </div>
+                            <div>
+                                <h4 class="font-headline font-bold text-lg">Bird Proofing</h4>
+                                <p class="text-xs text-on-surface/60 uppercase tracking-widest font-bold">Solar &amp;
+                                    Eave Protection</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl overflow-hidden aspect-[16/10]">
+                            <img alt="Bird Proofing"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                src="images/birdproofing-home.png">
+                        </div>
+                    </div>
+                    <!-- Gutter Cleaning -->
+                    <div
+                        class="bg-surface-container-low p-6 rounded-2xl group hover:shadow-xl transition-all border border-transparent hover:border-outline-variant/10">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div
+                                class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm text-tertiary group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined">water_damage</span>
+                            </div>
+                            <div>
+                                <h4 class="font-headline font-bold text-lg">Gutter Cleaning</h4>
+                                <p class="text-xs text-on-surface/60 uppercase tracking-widest font-bold">Debris Removal
+                                </p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl overflow-hidden aspect-[16/10]">
+                            <img alt="Gutter Cleaning"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                src="images/Guttercleaning-home.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Before/After Slider Section -->
+        <section class="py-24 bg-white px-8 overflow-hidden">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+                <div
+                    class="relative aspect-[1/1] rounded-2xl overflow-hidden shadow-2xl group select-none bg-surface-container max-w-lg mx-auto md:mx-0">
+                    <!-- After Image (Bottom Layer) -->
+                    <img alt="Roof After Restoration" class="absolute inset-0 w-full h-full object-cover"
+                        src="images/after-home.png">
+                    <div
+                        class="absolute top-1/2 -translate-y-1/2 text-white px-3 py-1 rounded text-xs font-black tracking-widest z-10 pointer-events-none bg-primary/90 right-4">
+                        AFTER</div>
+                    <!-- Before Image (Top Layer) -->
+                    <div class="absolute inset-0 w-1/2 overflow-hidden border-r-2 border-white shadow-[10px_0_15px_-5px_rgba(0,0,0,0.3)]"
+                        id="after-image-container">
+                        <img alt="Roof Before Restoration"
+                            class="absolute inset-0 w-[200%] h-full max-w-none object-cover"
+                            src="images/before-home.JPG" style="width: calc(200%);">
+                        <div
+                            class="absolute top-1/2 -translate-y-1/2 text-white px-3 py-1 rounded text-xs font-black tracking-widest z-10 pointer-events-none bg-black/50 left-4">
+                            BEFORE</div>
+                    </div>
+                    <!-- Slider Control -->
+                    <input class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30" max="100" min="0"
+                        oninput="const container = document.getElementById('after-image-container'); const img = container.querySelector('img'); const handle = document.getElementById('slider-handle'); container.style.width = this.value + '%'; img.style.width = (10000 / this.value) + '%'; handle.style.left = this.value + '%'; if(this.value == 0) img.style.width = '100%';"
+                        type="range" value="50">
+                    <!-- Visual Handle -->
+                    <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-1 bg-white z-20 pointer-events-none"
+                        id="slider-handle">
+                        <div
+                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary font-bold">unfold_more</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h2 class="text-4xl font-headline font-extrabold tracking-tight">Ready to refresh your home's crown?
+                    </h2>
+                    <p class="text-on-surface/70 leading-relaxed text-lg">Our multi-stage restoration process removes
+                        decades of environmental buildup without damaging the structure. We use specialized surfactants
+                        that target root systems of organic growth, ensuring a longer-lasting clean.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary font-bold">check_circle</span>
+                            <span class="font-bold">Eco-friendly biocide treatment</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary font-bold">check_circle</span>
+                            <span class="font-bold">Extends roof lifespan and prevents costly repairs</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary font-bold">check_circle</span>
+                            <span class="font-bold">UV reflective protective coating</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- Why Choose Us & Guarantee -->
+        <section class="py-24 bg-surface-container-low px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Trust Features Bento (Matches Image 13) -->
+                    <div class="bg-surface-container-low col-span-1 md:col-span-2">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                            <div
+                                class="bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/10 text-center flex flex-col items-center">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6">
+                                    <span class="material-symbols-outlined text-white text-3xl"
+                                        style="font-variation-settings: &quot;FILL&quot; 1;">water_damage</span>
+                                </div>
+                                <h4 class="font-headline font-extrabold text-xl mb-4">Leak &amp; Damage Prevention</h4>
+                                <ul class="space-y-3 text-left w-full">
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Stop leaks and prevent costly water damage
+                                    </li>
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Fix cracks and replace broken tiles
+                                    </li>
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Identify hidden issues before they get worse
+                                    </li>
+                                </ul>
+                            </div>
+                            <div
+                                class="bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/10 text-center flex flex-col items-center">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6">
+                                    <span class="material-symbols-outlined text-white text-3xl"
+                                        style="font-variation-settings: &quot;FILL&quot; 1;">payments</span>
+                                </div>
+                                <h4 class="font-headline font-extrabold text-xl mb-4">Cost-Effective Alternative</h4>
+                                <ul class="space-y-3 text-left w-full">
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Restore your roof at a fraction of the cost
+                                    </li>
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Avoid pricey &amp; disruptive re-roofing
+                                    </li>
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Extend your roof's lifespan affordably
+                                    </li>
+                                </ul>
+                            </div>
+                            <div
+                                class="bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/10 text-center flex flex-col items-center">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6">
+                                    <span class="material-symbols-outlined text-white text-3xl"
+                                        style="font-variation-settings: &quot;FILL&quot; 1;">home</span>
+                                </div>
+                                <h4 class="font-headline font-extrabold text-xl mb-4">Instant Visual Transformation</h4>
+                                <ul class="space-y-3 text-left w-full">
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Bring your roof back to a clean, like-new look
+                                    </li>
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Boost your home's curb appeal &amp; value
+                                    </li>
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Feel proud every time you come home
+                                    </li>
+                                </ul>
+                            </div>
+                            <div
+                                class="bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/10 text-center flex flex-col items-center">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6">
+                                    <span class="material-symbols-outlined text-white text-3xl"
+                                        style="font-variation-settings: &quot;FILL&quot; 1;">engineering</span>
+                                </div>
+                                <h4 class="font-headline font-extrabold text-xl mb-4">Safe &amp; Professional Work</h4>
+                                <ul class="space-y-3 text-left w-full">
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Fully insured and height-safety certified
+                                    </li>
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Trained &amp; experienced local technicians
+                                    </li>
+                                    <li class="flex items-start gap-2 text-sm text-on-surface/70">
+                                        <span
+                                            class="material-symbols-outlined text-green-600 text-lg font-bold">check</span>
+                                        Strict Australian safety compliance
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Guarantee Card -->
+                    <div
+                        class="bg-white p-12 rounded-2xl flex flex-col items-center justify-center text-center space-y-6 border border-outline-variant/10 shadow-sm relative overflow-hidden h-full">
+                        <div class="absolute -top-10 -right-10 text-primary/5">
+                            <span class="material-symbols-outlined text-[150px]">verified</span>
+                        </div>
+                        <img alt="The Vai" class="w-28 h-28 rounded-full object-cover border-4 border-surface shadow-md"
+                            src="images/logo.png">
+                        <h4 class="font-headline font-extrabold text-2xl">The "Vai" Guarantee</h4>
+                        <p class="text-on-surface/60 text-base italic leading-relaxed">"We treat every roof as if it
+                            were our own mother's home. Professionalism with a brotherly touch."</p>
+                        <div class="pt-4">
+                            <span class="material-symbols-outlined text-primary text-5xl">verified</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Final CTA & Contact Form (Matches Image 10) -->
+        <section class="py-24 px-8 bg-surface">
+            <div
+                class="max-w-5xl mx-auto bg-primary-container rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+                <div
+                    class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none">
+                </div>
+                <div class="relative z-10 space-y-12">
+                    <h2 class="text-4xl md:text-6xl font-headline font-black text-on-primary leading-tight">Ready to
+                        refresh your home's crown?</h2>
+                    <p class="text-on-primary/80 text-lg max-w-2xl mx-auto">Get an instant estimate for your roof wash
+                        or restoration project today. No obligations, just honest pricing.</p>
+                    <form class="max-w-4xl mx-auto space-y-4 mt-12 text-left"
+                        action="https://formsubmit.co/nepalivairoofwash@gmail.com" method="POST">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <input
+                                    class="w-full h-16 px-6 rounded-xl border-none text-on-surface bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-secondary/50 shadow-sm text-lg"
+                                    placeholder="Your Name" type="text" name="name">
+                            </div>
+                            <div class="space-y-1">
+                                <input
+                                    class="w-full h-16 px-6 rounded-xl border-none text-on-surface bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-secondary/50 shadow-sm text-lg"
+                                    placeholder="Your Email" type="email" name="email">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <input
+                                    class="w-full h-16 px-6 rounded-xl border-none text-on-surface bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-secondary/50 shadow-sm text-lg"
+                                    placeholder="Your Subject" type="text" name="subject">
+                            </div>
+                            <div class="space-y-1">
+                                <input
+                                    class="w-full h-16 px-6 rounded-xl border-none text-on-surface bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-secondary/50 shadow-sm text-lg"
+                                    placeholder="Your Phone Number" type="tel" name="phone">
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <input
+                                class="w-full h-16 px-6 rounded-xl border-none text-on-surface bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-secondary/50 shadow-sm text-lg"
+                                placeholder="Your address" type="text" name="address">
+                        </div>
+                        <div class="space-y-1">
+                            <textarea
+                                class="w-full px-6 py-4 rounded-xl border-none text-on-surface bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-secondary/50 shadow-sm text-lg"
+                                placeholder="Write Your Message" rows="5" name="message"></textarea>
+                        </div>
+                        <div class="flex justify-center md:justify-start pt-6">
+                            <button
+                                class="bg-secondary hover:bg-[#1a3a7a] text-white px-12 py-5 rounded-full font-headline font-bold text-xl flex items-center gap-3 transition-all shadow-lg hover:shadow-2xl group"
+                                type="submit">Get Quote <span
+                                    class="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span></button>
+                        </div>
+                        <input type="hidden" name="_captcha" value="false">
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full border-t border-[#e7bdb7]/20 bg-[#3e5ca3] dark:bg-gray-900">
+        <div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 max-w-7xl mx-auto">
+            <div class="space-y-4">
+                <div class="font-['Manrope'] font-extrabold text-[#ffffff] text-2xl tracking-tighter">
+                    Nepali Vai Roof Wash
+                </div>
+                <p class="font-['Inter'] text-sm tracking-wide text-[#9dcee3] opacity-70 max-w-xs">
+                    Protecting Sydney homes with expert craftsmanship and modern restoration techniques.
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8">
+                <a class="font-['Inter'] text-sm tracking-wide text-[#9dcee3] opacity-70 hover:opacity-100 transition-opacity"
+                    href="#">Privacy Policy</a>
+                <a class="font-['Inter'] text-sm tracking-wide text-[#9dcee3] opacity-70 hover:opacity-100 transition-opacity"
+                    href="#">Terms of Service</a>
+                <a class="font-['Inter'] text-sm tracking-wide text-[#9dcee3] opacity-70 hover:opacity-100 transition-opacity"
+                    href="contact.html">Contact Us</a>
+                <a class="font-['Inter'] text-sm tracking-wide text-[#9dcee3] opacity-70 hover:opacity-100 transition-opacity"
+                    href="#">FAQ</a>
+            </div>
+            <div class="text-[#9dcee3] opacity-70 text-sm font-['Inter']">
+                <span style="color: rgb(245, 250, 255); font-family: Montserrat, sans-serif; font-size: 16px; ">©
+                    Copyright&nbsp;</span>
+                <span id="date"
+                    style="box-sizing: inherit; color: rgb(245, 250, 255); font-family: Montserrat, sans-serif; font-size: 16px; scroll-behavior: smooth !important;">2026</span>
+                <span
+                    style="color: rgb(245, 250, 255); font-family: Montserrat, sans-serif; font-size: 16px; ">&nbsp;Nepali
+                    Vai Roof Wash.</span>
+                <span
+                    style="color: rgb(245, 250, 255); font-family: Montserrat, sans-serif; font-size: 16px; ">&nbsp;All
+                    Rights Reserved.</span>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

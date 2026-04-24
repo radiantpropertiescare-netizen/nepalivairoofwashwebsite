@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
 package-lock.json
+package.json
 
 # Environment
 .env
@@ -18,11 +19,14 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
-# Build
+# Build & Logs
 dist/
 build/
 *.log
+npm-debug.log*
 
-# Claude Code local
-.claude/teams/
-.claude/tasks/
+# AI Assistant & Metadata
+CLAUDE.md
+.claude/
+.gemini/
+.system_generated/

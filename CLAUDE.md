@@ -1,7 +1,7 @@
-# Project: Demo 1
+# Project: Nepali Vai Roof Wash
 
 ## Overview
-This is the project workspace for the Demo 1 project.
+This is the project workspace for the Nepali Vai Roof Wash project.
 
 ## Guidelines
 - Follow clean code principles

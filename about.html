@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>About Us - Nepali Vai Roof Wash</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed-variant": "#930004",
+            "surface-container-high": "#e7e8e9",
+            "on-secondary-fixed-variant": "#244389",
+            "tertiary-container": "#4d7d91",
+            "surface-bright": "#f8f9fa",
+            "primary": "#c00007",
+            "tertiary-fixed-dim": "#9dcee3",
+            "on-background": "#191c1d",
+            "surface-variant": "#e1e3e4",
+            "primary-fixed-dim": "#ffb4a9",
+            "background": "#f8f9fa",
+            "secondary": "#3e5ca3",
+            "surface-container": "#edeeef",
+            "on-primary": "#ffffff",
+            "outline": "#926f6a",
+            "tertiary": "#336477",
+            "on-tertiary-fixed-variant": "#174c5f",
+            "on-error-container": "#93000a",
+            "outline-variant": "#e7bdb7",
+            "inverse-on-surface": "#f0f1f2",
+            "on-error": "#ffffff",
+            "error": "#ba1a1a",
+            "on-tertiary-fixed": "#001f29",
+            "on-surface": "#191c1d",
+            "inverse-primary": "#ffb4a9",
+            "surface-container-low": "#f3f4f5",
+            "on-secondary-container": "#224288",
+            "primary-fixed": "#ffdad5",
+            "secondary-fixed-dim": "#b2c5ff",
+            "tertiary-fixed": "#bbeaff",
+            "on-secondary-fixed": "#001847",
+            "surface-container-highest": "#e1e3e4",
+            "inverse-surface": "#2e3132",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed": "#410001",
+            "on-primary-container": "#140000",
+            "secondary-fixed": "#dae2ff",
+            "primary-container": "#e52920",
+            "surface-tint": "#c00007",
+            "surface-dim": "#d9dadb",
+            "surface": "#f8f9fa",
+            "surface-container-lowest": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#ffffff",
+            "secondary-container": "#95b1ff",
+            "on-tertiary": "#ffffff",
+            "on-surface-variant": "#5d3f3b"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline": ["Manrope", "sans-serif"],
+            "display": ["Manrope", "sans-serif"],
+            "body": ["Inter", "sans-serif"],
+            "label": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .ghost-divider {
+      background-image: linear-gradient(to right, transparent, rgba(231, 189, 183, 0.2) 50%, transparent);
+      height: 1px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body class="bg-surface text-on-surface font-body antialiased">
+  <header class="fixed top-0 w-full z-50 bg-white">
+<nav class="flex justify-between items-center w-full px-4 md:px-12 py-4 bg-white relative z-50">
+<div class="flex items-center gap-3">
+<img alt="Nepali Vai Roof Wash Logo" class="h-14 md:h-16 w-auto object-contain" src="images/logo.png">
+<span class="font-headline font-extrabold text-xl md:text-2xl text-[#191c1d] tracking-tight whitespace-nowrap">Nepali Vai Roof Wash</span>
+</div>
+<div class="hidden lg:flex items-center gap-10">
+<a class="font-headline font-bold text-base text-[#5d6b82] hover:text-[#5d6b82] transition-colors" href="index.html">Home</a>
+<a class="font-headline font-bold text-base text-[#5d6b82] hover:text-[#5d6b82] transition-colors" href="about.html">About Us</a>
+<a class="font-headline font-bold text-base text-[#5d6b82] hover:text-[#5d6b82] transition-colors" href="services.html">Services</a>
+<a class="font-headline font-bold text-base text-[#5d6b82] hover:text-[#5d6b82] transition-colors" href="process.html">Our Process</a>
+<a class="font-headline font-bold text-base text-[#5d6b82] hover:text-[#5d6b82] transition-colors" href="contact.html">Contact Us</a>
+</div>
+<div class="hidden lg:block">
+<button class="bg-[#e52920] text-white px-8 py-3 rounded-xl font-headline font-bold text-sm tracking-wide hover:bg-[#c00007] transition-all shadow-md" onclick="window.location.href='contact.html'">Get Quote </button>
+</div>
+<!-- Mobile Menu Button -->
+<button id="mobile-menu-btn" class="lg:hidden text-on-surface p-2 z-50">
+    <span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</nav>
+<div class="bg-[#f3f4f5] dark:bg-gray-900 h-[1px] w-full relative z-50"></div>
+
+<!-- Mobile Dropdown -->
+<div id="mobile-menu" class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 flex flex-col pt-24 px-8 pb-8 overflow-y-auto lg:hidden">
+<a class="font-headline font-bold text-2xl text-[#5d6b82] py-4 border-b border-surface-variant" href="index.html">Home</a>
+<a class="font-headline font-bold text-2xl text-[#5d6b82] hover:text-[#5d6b82] py-4 border-b border-surface-variant" href="about.html">About Us</a>
+<a class="font-headline font-bold text-2xl text-[#5d6b82] hover:text-[#5d6b82] py-4 border-b border-surface-variant" href="services.html">Services</a>
+<a class="font-headline font-bold text-2xl text-[#5d6b82] hover:text-[#5d6b82] py-4 border-b border-surface-variant" href="process.html">Our Process</a>
+<a class="font-headline font-bold text-2xl text-[#5d6b82] hover:text-[#5d6b82] py-4 border-b border-surface-variant" href="contact.html">Contact Us</a>
+<div class="mt-8">
+<button class="w-full bg-[#e52920] text-white px-8 py-4 rounded-xl font-headline font-bold text-lg tracking-wide hover:bg-[#c00007] transition-all shadow-md" onclick="window.location.href='contact.html'">Get Quote</button>
+</div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if(!btn || !menu) return;
+        const icon = btn.querySelector('.material-symbols-outlined');
+        let isOpen = false;
+
+        btn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            if (isOpen) {
+                menu.classList.remove('translate-x-full');
+                icon.textContent = 'close';
+                document.body.style.overflow = 'hidden';
+            } else {
+                menu.classList.add('translate-x-full');
+                icon.textContent = 'menu';
+                document.body.style.overflow = '';
+            }
+        });
+    });
+</script>
+</header>
+  <!-- Shared Component Base -->
+  <div class="relative flex h-auto min-h-screen w-full flex-col bg-[#fcf8f8] group/design-root overflow-x-hidden pt-32" style="font-family: Manrope, &quot;Noto Sans&quot;, sans-serif;">
+    <div class="layout-container flex h-full grow flex-col">
+      <div class="px-40 flex flex-1 justify-center py-5">
+        <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+
+          <div class="flex flex-wrap gap-2 p-4">
+            <a class="text-[#97524e] text-base font-medium leading-normal" href="index.html" style="">Home</a>
+            <span class="text-[#97524e] text-base font-medium leading-normal" style="">/</span>
+            <span class="text-[#1b0f0e] text-base font-medium leading-normal" style="">About Us</span>
+          </div>
+          <h2 class="text-[#1b0f0e] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5" style="">
+            Delivering Top-Quality Roof Restoration Services</h2>
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+            <div class="flex flex-col gap-3 pb-3">
+              <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded" data-alt="professional technician in safety gear cleaning a residential roof with a high-pressure washer" style="background-image: url(&quot;images/Pressure washing man on roof.png&quot;);">
+              </div>
+              <div>
+                <p class="text-[#1b0f0e] text-base font-medium leading-normal" style="">Our Commitment to You</p>
+                <p class="text-[#97524e] text-sm font-normal leading-normal" style="">
+                  At Nepali Vai Roof Wash, we treat your property like our own family's. We provide top-quality roof
+                  repair, washing, and maintenance services to protect your
+                  home or business.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- New Content Appended seamlessly within the layout-content-container -->
+          <!-- Feature Icons Bento Grid -->
+          <section class="py-10 bg-surface-container-low rounded-xl mt-6">
+            <div class="px-8 mb-8 text-center">
+              <h3 class="font-headline text-2xl tracking-[-0.02em] text-on-surface mb-2" style="">Why Choose Us</h3>
+              <p class="font-body text-on-surface-variant max-w-lg mx-auto" style="">Combining professional expertise
+                with genuine care for your property's longevity.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-8">
+              <!-- Feature 1 -->
+              <div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+                  <span class="material-symbols-outlined" data-icon="schedule" style="font-variation-settings: &quot;FILL&quot; 1;">schedule</span>
+                </div>
+                <div>
+                  <h4 class="font-label text-sm uppercase tracking-[0.05em] text-secondary font-semibold mb-1" style="">
+                    Responsiveness</h4>
+                  <p class="font-headline text-lg font-bold text-on-surface" style="">Same-Day Service</p>
+                </div>
+              </div>
+              <!-- Feature 2 -->
+              <div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+                  <span class="material-symbols-outlined" data-icon="engineering" style="font-variation-settings: &quot;FILL&quot; 1;">engineering</span>
+                </div>
+                <div>
+                  <h4 class="font-label text-sm uppercase tracking-[0.05em] text-secondary font-semibold mb-1" style="">
+                    Expertise</h4>
+                  <p class="font-headline text-lg font-bold text-on-surface" style="">Experienced Technicians</p>
+                </div>
+              </div>
+              <!-- Feature 3 -->
+              <div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+                  <span class="material-symbols-outlined" data-icon="shield" style="font-variation-settings: &quot;FILL&quot; 1;">shield</span>
+                </div>
+                <div>
+                  <h4 class="font-label text-sm uppercase tracking-[0.05em] text-secondary font-semibold mb-1" style="">
+                    Security</h4>
+                  <p class="font-headline text-lg font-bold text-on-surface" style="">Safe Methods</p>
+                </div>
+              </div>
+              <!-- Feature 4 -->
+              <div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col items-start gap-4 lg:col-span-2">
+                <div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary">
+                  <span class="material-symbols-outlined" data-icon="support_agent" style="font-variation-settings: &quot;FILL&quot; 1;">support_agent</span>
+                </div>
+                <div>
+                  <h4 class="font-label text-sm uppercase tracking-[0.05em] text-tertiary font-semibold mb-1" style="">
+                    Availability</h4>
+                  <p class="font-headline text-lg font-bold text-on-surface" style="">24/7 Support Service</p>
+                  <p class="font-body text-on-surface-variant mt-2 max-w-md" style="">Emergencies don't wait for
+                    business hours. Our dedicated team is ready to respond when you need us most.</p>
+                </div>
+              </div>
+              <!-- Feature 5 -->
+              <div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+                  <span class="material-symbols-outlined" data-icon="verified" style="font-variation-settings: &quot;FILL&quot; 1;">verified</span>
+                </div>
+                <div>
+                  <h4 class="font-label text-sm uppercase tracking-[0.05em] text-primary font-semibold mb-1" style="">
+                    Trust</h4>
+                  <p class="font-headline text-lg font-bold text-on-surface" style="">Licensed Services</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Mission & Vision Bento -->
+          <section class="py-16">
+            <div class="ghost-divider mb-16"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+              <!-- Mission -->
+              <div class="relative bg-surface-container-lowest p-10 rounded-xl overflow-hidden border border-surface-container-high">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-secondary/5 rounded-full blur-2xl"></div>
+                <div class="w-14 h-14 bg-secondary text-on-secondary rounded-lg flex items-center justify-center mb-6">
+                  <span class="material-symbols-outlined text-3xl" data-icon="flag" style="">flag</span>
+                </div>
+                <h3 class="font-headline text-2xl font-bold tracking-[-0.02em] text-on-surface mb-4" style="">Our
+                  Mission</h3>
+                <p class="font-body text-on-surface-variant leading-relaxed" style="">
+                  To deliver the most effective, safe, and environmentally responsible roof cleaning and maintenance
+                  services. We strive to protect your investment while treating every property with the care and respect
+                  of the 'Vai' (brotherly) tradition.
+                </p>
+              </div>
+              <!-- Vision -->
+              <div class="relative bg-secondary p-10 rounded-xl overflow-hidden text-on-secondary">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rotate-45 transform translate-x-1/2 -translate-y-1/2">
+                </div>
+                <div class="w-14 h-14 bg-white/10 text-white rounded-lg flex items-center justify-center mb-6 backdrop-blur-sm">
+                  <span class="material-symbols-outlined text-3xl" data-icon="visibility" style="">visibility</span>
+                </div>
+                <h3 class="font-headline text-2xl font-bold tracking-[-0.02em] text-white mb-4" style="">Our Vision</h3>
+                <p class="font-body text-white/80 leading-relaxed" style="">
+                  To be the leading and most trusted service provider in roof maintenance, setting the standard for
+                  quality, reliability, and community-focused business practices across the region.
+                </p>
+              </div>
+            </div>
+          </section>
+          <!-- Our Clients -->
+          <section class="py-12 bg-surface-container-low rounded-xl mb-16 px-8">
+            <div class="text-center mb-8">
+              <h3 class="font-headline text-xl font-semibold tracking-[-0.02em] text-on-surface" style="">Trusted by
+                Local Partners</h3>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+              <div class="font-headline font-bold text-2xl text-on-surface-variant" style="">BuildCore</div>
+              <div class="font-headline font-bold text-2xl text-on-surface-variant" style="">ApexEstates</div>
+              <div class="font-headline font-bold text-2xl text-on-surface-variant" style="">MetroHousing</div>
+              <div class="font-headline font-bold text-2xl text-on-surface-variant" style="">SummitProperties</div>
+            </div>
+          </section>
+          <!-- CTA Strip -->
+          <section class="relative w-full rounded-xl overflow-hidden min-h-[300px] flex items-center justify-center mb-10 bg-cover bg-center" data-alt="clean terracotta roof tiles in bright daylight showing pristine condition" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuA2qV5cWg3KoEvGQmgqJbVlrcRBv_t94hU2WMaRSwkBJAO7mdt2ohSy1ePpq-YdqamIo9-vTd5s_7uR689uQENXH4QRI9xAeXzr6cHsR7q_XcVjfpwbjoR3afjXpLY_8igf6rzBWMzBtn_s2uxCyXO6qhxxYFxBHdVdyo7wn-1vn51Ob8-xAKoLRLi3VeCEOoWpVMNK8zhoPwkqq8A5myYggD8N154g_IvooOw6z3yGZL5OmysaOHkz9VziDjeYYoPSxfUvl2QWYpiC&quot;);">
+            <div class="absolute inset-0 bg-surface-container-highest/60 mix-blend-multiply"></div>
+            <div class="relative z-10 w-[90%] max-w-2xl mx-auto text-center p-10 bg-surface-container-lowest/85 backdrop-blur-[20px] rounded-xl border border-white/20 shadow-[0px_20px_40px_rgba(25,28,29,0.06)]">
+              <h2 class="font-headline text-3xl font-bold tracking-[-0.02em] text-on-surface mb-4" style="">Ready to
+                Restore Your Roof?</h2>
+              <p class="font-body text-on-surface-variant mb-8" style="">Get a free, no-obligation estimate for our
+                top-quality washing and repair services today.</p>
+              <button class="bg-gradient-to-br from-primary to-primary-container text-on-primary font-label uppercase tracking-[0.05em] font-semibold py-4 px-8 rounded-md hover:from-primary-container hover:to-primary transition-all duration-300 shadow-[0px_4px_14px_rgba(229,41,32,0.3)] flex items-center justify-center gap-2 mx-auto" style="" onclick="window.location.href='contact.html'">Get Quote <span class="material-symbols-outlined text-sm" data-icon="arrow_forward" style="">arrow_forward</span></button>
+            </div>
+          </section>
+          <!-- Footer -->
+
+        </div> <!-- End layout-content-container -->
+      </div> <!-- End px-40 -->
+    </div> <!-- End layout-container -->
+  </div> <!-- End group/design-root -->
+  <footer class="w-full border-t border-[#e7bdb7]/20 bg-[#3e5ca3] dark:bg-gray-900">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 max-w-7xl mx-auto">
+<div class="space-y-4">
+<div class="font-['Manrope'] font-extrabold text-[#ffffff] text-2xl tracking-tighter">
+                Nepali Vai Roof Wash
+            </div>
+<p class="font-['Inter'] text-sm tracking-wide text-[#9dcee3] opacity-70 max-w-xs">
+                Protecting Sydney homes with expert craftsmanship and modern restoration techniques.
+            </p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-['Inter'] text-sm tracking-wide text-[#9dcee3] opacity-70 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-sm tracking-wide text-[#9dcee3] opacity-70 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-sm tracking-wide text-[#9dcee3] opacity-70 hover:opacity-100 transition-opacity" href="contact.html">Contact Us</a>
+<a class="font-['Inter'] text-sm tracking-wide text-[#9dcee3] opacity-70 hover:opacity-100 transition-opacity" href="#">FAQ</a>
+</div>
+<div class="text-[#9dcee3] opacity-70 text-sm font-['Inter']">
+<span style="color: rgb(245, 250, 255); font-family: Montserrat, sans-serif; font-size: 16px; ">© Copyright&nbsp;</span>
+<span id="date" style="box-sizing: inherit; color: rgb(245, 250, 255); font-family: Montserrat, sans-serif; font-size: 16px; scroll-behavior: smooth !important;">2026</span>
+<span style="color: rgb(245, 250, 255); font-family: Montserrat, sans-serif; font-size: 16px; ">&nbsp;Nepali Vai Roof Wash.</span>
+<span style="color: rgb(245, 250, 255); font-family: Montserrat, sans-serif; font-size: 16px; ">&nbsp;All Rights Reserved.</span>
+</div>
+</div>
+</footer>
+
+
+</body></html>
