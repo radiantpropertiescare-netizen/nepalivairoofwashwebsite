@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Free Roof Quote - Nepali Vai Roof Wash | 60-Second Quote Form</title>
+  <meta name="description" content="Get a free, no-obligation quote for premium roof washing, painting, and repointing in Sydney. Fast and easy 60-second form.">
+  <meta property="og:title" content="Get Free Roof Quote - Nepali Vai Roof Wash">
+  <meta property="og:description" content="Get a free, no-obligation quote for premium roof care in Sydney.">
+  <meta property="og:image" content="https://nepalivairoofwash.com.au/images/Blueroof.JPG">
+  <meta property="og:url" content="https://nepalivairoofwash.com.au/get-quote.html">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#c00007", "primary-container": "#e52920", "on-primary": "#ffffff", "secondary": "#3e5ca3", "surface": "#f8f9fa", "on-surface": "#191c1d", "surface-container-low": "#f3f4f5", "surface-container": "#edeeef", "surface-container-high": "#e7e8e9", "outline-variant": "#e7bdb7", "tertiary-fixed-dim": "#9dcee3" }, fontFamily: { headline: ["Manrope", "sans-serif"], body: ["Inter", "sans-serif"] } } } }
+  </script>
+  <style>
+    * {
+      box-sizing: border-box
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+    }
+
+    .step {
+      display: none
+    }
+
+    .step.active {
+      display: block
+    }
+
+    .opt-card {
+      cursor: pointer;
+      transition: all .2s;
+      border: 2px solid #e7e8e9;
+      border-radius: 16px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #fff;
+      width: 100%;
+      text-align: left
+    }
+
+    .opt-card:hover {
+      border-color: #3e5ca3;
+      background: #f0f4ff
+    }
+
+    .opt-card.selected {
+      border-color: #c00007;
+      background: #fff5f5
+    }
+
+    .opt-card.selected .opt-check {
+      background: #c00007;
+      border-color: #c00007
+    }
+
+    .opt-card.selected .opt-check::after {
+      display: block
+    }
+
+    .opt-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #d1d5db;
+      flex-shrink: 0;
+      position: relative;
+      background: #fff
+    }
+
+    .opt-check::after {
+      content: "";
+      display: none;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff
+    }
+
+    .opt-card.multi.selected .opt-check {
+      border-radius: 4px
+    }
+
+    .opt-card.multi .opt-check {
+      border-radius: 4px
+    }
+
+    .opt-card-grid {
+      cursor: pointer;
+      transition: all .2s;
+      border: 2px solid #e7e8e9;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column
+    }
+
+    .opt-card-grid:hover {
+      border-color: #3e5ca3;
+      background: #f0f4ff
+    }
+
+    .opt-card-grid.selected {
+      border-color: #c00007;
+      background: #fff5f5
+    }
+
+    .opt-card-grid.selected .opt-check {
+      background: #c00007;
+      border-color: #c00007
+    }
+
+    .opt-card-grid.selected .opt-check::after {
+      display: block
+    }
+
+    .opt-card-grid .img-container {
+      width: 100%;
+      height: 120px;
+      background: #f3f4f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      border-bottom: 1px solid #e7e8e9
+    }
+
+    .opt-card-grid .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* display none for dummy setup */
+    .opt-card-grid .text-container {
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px
+    }
+
+    .opts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px
+    }
+
+    @media (min-width: 640px) {
+      .opts-grid {
+        grid-template-columns: repeat(4, 1fr)
+      }
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: #e7e8e9;
+      border-radius: 4px;
+      overflow: hidden
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #c00007, #e52920);
+      border-radius: 4px;
+      transition: width .4s ease
+    }
+
+    .toast {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #191c1d;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none
+    }
+
+    .toast.show {
+      opacity: 1
+    }
+
+    .btn-primary {
+      background: #e52920;
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-family: Manrope, sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center
+    }
+
+    .btn-primary:hover {
+      background: #c00007;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(192, 0, 7, .25)
+    }
+
+    .btn-primary:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none
+    }
+
+    .btn-secondary {
+      background: #f3f4f5;
+      color: #191c1d;
+      border: none;
+      border-radius: 14px;
+      font-family: Manrope, sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center
+    }
+
+    .btn-secondary:hover {
+      background: #e7e8e9
+    }
+
+    .form-input {
+      width: 100%;
+      background: #f3f4f5;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-family: Inter, sans-serif;
+      font-size: 1rem;
+      color: #191c1d;
+      transition: all .2s;
+      outline: none
+    }
+
+    .form-input:focus {
+      border-color: #3e5ca3;
+      background: #fff
+    }
+
+    .form-input.error {
+      border-color: #c00007
+    }
+
+    .benefit-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      border: 1px solid #f3f4f5
+    }
+
+    .recent-projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .recent-projects-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body style="background:#f8f9fa;font-family:Inter,sans-serif;min-height:100vh;margin:0">
+  <div class="toast" id="toast">Please select the options.</div>
+  <div style="max-width:640px;margin:0 auto;padding:24px 16px 80px">
+    <!-- Logo -->
+    <div style="text-align:center;padding:24px 0 32px">
+      <a href="index.html" style="display:inline-block;"><img src="images/logo.png" alt="Nepali Vai Roof Wash"
+          style="height:56px;width:auto;object-fit:contain;margin:0 auto;"></a>
+      <p style="font-family:Manrope,sans-serif;font-weight:800;color:#191c1d;font-size:1rem;margin:8px 0 0">Nepali Vai
+        Roof Wash</p>
+    </div>
+    <!-- Progress -->
+    <div style="margin-bottom:32px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <span style="font-size:.8rem;font-weight:600;color:#5d6b82;text-transform:uppercase;letter-spacing:.08em"
+          id="step-label">Step 1 of 6</span>
+        <span style="font-size:.8rem;font-weight:600;color:#c00007" id="step-pct">17%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:17%"></div>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step active" id="step-1">
+      <div style="margin-bottom:28px">
+        <h1
+          style="font-family:Manrope,sans-serif;font-weight:800;font-size:1.6rem;color:#191c1d;margin:0 0 8px;line-height:1.3">
+          Which Types of Roof Do You have?</h1>
+        <p style="color:#5d6b82;margin:0;font-size:.95rem">Select the option that best describes your roof.</p>
+      </div>
+      <div class="opts-grid" id="opts-1">
+        <button class="opt-card-grid" data-step="1" data-value="Terracotta Roof" onclick="selectOpt(this)">
+          <div class="img-container"><img src="images/terracottaroof-getquote.png" alt="Terracotta Roof"></div>
+          <div class="text-container">
+            <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:.9rem;color:#191c1d">Terracotta
+              Roof</span>
+            <div class="opt-check"></div>
+          </div>
+        </button>
+        <button class="opt-card-grid" data-step="1" data-value="Concrete Roof" onclick="selectOpt(this)">
+          <div class="img-container"><img src="images/concreteroof-getquote.png" alt="Concrete Roof"></div>
+          <div class="text-container">
+            <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:.9rem;color:#191c1d">Concrete
+              Roof</span>
+            <div class="opt-check"></div>
+          </div>
+        </button>
+        <button class="opt-card-grid" data-step="1" data-value="Colourbond Roof" onclick="selectOpt(this)">
+          <div class="img-container"><img src="images/colourbondroof-getquote.png" alt="Colourbond Roof"></div>
+          <div class="text-container">
+            <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:.9rem;color:#191c1d">Colourbond
+              Roof</span>
+            <div class="opt-check"></div>
+          </div>
+        </button>
+        <button class="opt-card-grid" data-step="1" data-value="Not Sure" onclick="selectOpt(this)">
+          <div class="img-container">🤔</div>
+          <div class="text-container">
+            <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:.9rem;color:#191c1d">Not Sure</span>
+            <div class="opt-check"></div>
+          </div>
+        </button>
+      </div>
+      <div style="margin-top:28px">
+        <button class="btn-primary" style="width:100%;padding:18px" onclick="nextStep(2)">Next <span
+            class="material-symbols-outlined">arrow_forward</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step-2">
+      <div style="margin-bottom:28px">
+        <h2
+          style="font-family:Manrope,sans-serif;font-weight:800;font-size:1.6rem;color:#191c1d;margin:0 0 8px;line-height:1.3">
+          Can you see any missing, cracked, or slipped tiles on your roof?</h2>
+        <p style="color:#5d6b82;margin:0;font-size:.95rem">This helps us assess the repair scope.</p>
+      </div>
+      <div
+        style="margin-bottom:24px;border-radius:12px;overflow:hidden;background:#f3f4f5;height:240px;display:flex;align-items:center;justify-content:center;border:1px solid #e7e8e9;position:relative;">
+        <img src="images/cracktile-getquote.png" alt="Damaged roof tiles" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px" id="opts-2">
+        <button class="opt-card" data-step="2" data-value="Yes" onclick="selectOpt(this)">
+          <div class="opt-check"></div><span
+            style="font-family:Manrope,sans-serif;font-weight:700;font-size:1rem;color:#191c1d">✅ Yes</span>
+        </button>
+        <button class="opt-card" data-step="2" data-value="No" onclick="selectOpt(this)">
+          <div class="opt-check"></div><span
+            style="font-family:Manrope,sans-serif;font-weight:700;font-size:1rem;color:#191c1d">❌ No</span>
+        </button>
+        <button class="opt-card" data-step="2" data-value="Have to Check" onclick="selectOpt(this)">
+          <div class="opt-check"></div><span
+            style="font-family:Manrope,sans-serif;font-weight:700;font-size:1rem;color:#191c1d">🔍 Have to Check</span>
+        </button>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:28px">
+        <button class="btn-secondary" style="flex:1;padding:18px" onclick="prevStep(1)"><span
+            class="material-symbols-outlined">arrow_back</span> Back</button>
+        <button class="btn-primary" style="flex:2;padding:18px" onclick="nextStep(3)">Next <span
+            class="material-symbols-outlined">arrow_forward</span></button>
+      </div>
+    </div>
+    <!-- STEP 3 -->
+    <div class="step" id="step-3">
+      <div style="margin-bottom:28px">
+        <h2
+          style="font-family:Manrope,sans-serif;font-weight:800;font-size:1.6rem;color:#191c1d;margin:0 0 8px;line-height:1.3">
+          Do you have a roof leak?</h2>
+        <p style="color:#5d6b82;margin:0;font-size:.95rem">Look for any signs of water staining, damp patches, or
+          dripping inside your property.</p>
+      </div>
+      <div
+        style="margin-bottom:24px;border-radius:12px;overflow:hidden;background:#f3f4f5;height:240px;display:flex;align-items:center;justify-content:center;border:1px solid #e7e8e9;position:relative;">
+        <img src="images/roofleakage-getquote.png" alt="Roof leak reference" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px" id="opts-3">
+        <button class="opt-card" data-step="3" data-value="Yes" onclick="selectOpt(this)">
+          <div class="opt-check"></div><span
+            style="font-family:Manrope,sans-serif;font-weight:700;font-size:1rem;color:#191c1d">✅ Yes</span>
+        </button>
+        <button class="opt-card" data-step="3" data-value="No" onclick="selectOpt(this)">
+          <div class="opt-check"></div><span
+            style="font-family:Manrope,sans-serif;font-weight:700;font-size:1rem;color:#191c1d">❌ No</span>
+        </button>
+        <button class="opt-card" data-step="3" data-value="Have to Check" onclick="selectOpt(this)">
+          <div class="opt-check"></div><span
+            style="font-family:Manrope,sans-serif;font-weight:700;font-size:1rem;color:#191c1d">🔍 Have to Check</span>
+        </button>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:28px">
+        <button class="btn-secondary" style="flex:1;padding:18px" onclick="prevStep(2)"><span
+            class="material-symbols-outlined">arrow_back</span> Back</button>
+        <button class="btn-primary" style="flex:2;padding:18px" onclick="nextStep(4)">Next <span
+            class="material-symbols-outlined">arrow_forward</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 4 — MULTI SELECT -->
+    <div class="step" id="step-4">
+      <div style="margin-bottom:28px">
+        <h2
+          style="font-family:Manrope,sans-serif;font-weight:800;font-size:1.6rem;color:#191c1d;margin:0 0 8px;line-height:1.3">
+          What Service Do You Need?</h2>
+        <p style="color:#5d6b82;margin:0;font-size:.95rem">Select all that apply — you can choose multiple.</p>
+      </div>
+      <div class="opts-grid" id="opts-4">
+        <button class="opt-card-grid multi" data-step="4" data-value="Roof Washing" onclick="selectMulti(this)">
+          <div class="img-container"><img src="images/roofwashing-getquote.png" alt="Roof Washing"></div>
+          <div class="text-container">
+            <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:.9rem;color:#191c1d">Roof
+              Washing</span>
+            <div class="opt-check" style="border-radius:4px"></div>
+          </div>
+        </button>
+        <button class="opt-card-grid multi" data-step="4" data-value="Roof Painting" onclick="selectMulti(this)">
+          <div class="img-container"><img src="images/roofpainting-getquote.png" alt="Roof Painting"></div>
+          <div class="text-container">
+            <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:.9rem;color:#191c1d">Roof
+              Painting</span>
+            <div class="opt-check" style="border-radius:4px"></div>
+          </div>
+        </button>
+        <button class="opt-card-grid multi" data-step="4" data-value="Roof Repointing" onclick="selectMulti(this)">
+          <div class="img-container"><img src="images/roofrepointing-getquote.png" alt="Roof Repointing"></div>
+          <div class="text-container">
+            <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:.9rem;color:#191c1d">Roof
+              Repointing</span>
+            <div class="opt-check" style="border-radius:4px"></div>
+          </div>
+        </button>
+        <button class="opt-card-grid multi" data-step="4" data-value="Full Restoration" onclick="selectMulti(this)">
+          <div class="img-container"><img src="images/fullroofrestoration-getquote.png" alt="Full Restoration"></div>
+          <div class="text-container">
+            <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:.9rem;color:#191c1d">Full
+              Restoration</span>
+            <div class="opt-check" style="border-radius:4px"></div>
+          </div>
+        </button>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:28px">
+        <button class="btn-secondary" style="flex:1;padding:18px" onclick="prevStep(3)"><span
+            class="material-symbols-outlined">arrow_back</span> Back</button>
+        <button class="btn-primary" style="flex:2;padding:18px" onclick="nextStep(5)">Next <span
+            class="material-symbols-outlined">arrow_forward</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step" id="step-5">
+      <div style="margin-bottom:28px">
+        <h2
+          style="font-family:Manrope,sans-serif;font-weight:800;font-size:1.6rem;color:#191c1d;margin:0 0 8px;line-height:1.3">
+          Please Select the best Medium to Contact You</h2>
+        <p style="color:#5d6b82;margin:0;font-size:.95rem">We'll reach out via your preferred method.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px" id="opts-5">
+        <button class="opt-card" data-step="5" data-value="Phone Call" onclick="selectOpt(this)">
+          <div class="opt-check"></div><span
+            style="font-family:Manrope,sans-serif;font-weight:700;font-size:1rem;color:#191c1d">📞 Phone Call</span>
+        </button>
+        <button class="opt-card" data-step="5" data-value="WhatsApp Text Or Message" onclick="selectOpt(this)">
+          <div class="opt-check"></div><span
+            style="font-family:Manrope,sans-serif;font-weight:700;font-size:1rem;color:#191c1d">💬 WhatsApp Text Or
+            Message</span>
+        </button>
+        <button class="opt-card" data-step="5" data-value="Email" onclick="selectOpt(this)">
+          <div class="opt-check"></div><span
+            style="font-family:Manrope,sans-serif;font-weight:700;font-size:1rem;color:#191c1d">📧 Email</span>
+        </button>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:28px">
+        <button class="btn-secondary" style="flex:1;padding:18px" onclick="prevStep(4)"><span
+            class="material-symbols-outlined">arrow_back</span> Back</button>
+        <button class="btn-primary" style="flex:2;padding:18px" onclick="nextStep(6)">Next <span
+            class="material-symbols-outlined">arrow_forward</span></button>
+      </div>
+    </div>
+    <!-- STEP 6 — Contact Details -->
+    <div class="step" id="step-6">
+      <div style="margin-bottom:28px">
+        <h2
+          style="font-family:Manrope,sans-serif;font-weight:800;font-size:1.6rem;color:#191c1d;margin:0 0 8px;line-height:1.3">
+          Almost there! Your contact details</h2>
+        <p style="color:#5d6b82;margin:0;font-size:.95rem">We'll use this to send your free quote. 100% no spam.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div>
+          <label
+            style="font-size:.8rem;font-weight:600;color:#5d6b82;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:8px">Full
+            Name *</label>
+          <input class="form-input" id="f-name" type="text" placeholder="John Smith" autocomplete="name">
+        </div>
+        <div>
+          <label
+            style="font-size:.8rem;font-weight:600;color:#5d6b82;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:8px">Email
+            Address *</label>
+          <input class="form-input" id="f-email" type="email" placeholder="john@example.com" autocomplete="email">
+        </div>
+        <div>
+          <label
+            style="font-size:.8rem;font-weight:600;color:#5d6b82;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:8px">Phone
+            Number *</label>
+          <input class="form-input" id="f-phone" type="tel" placeholder="0400 000 000" autocomplete="tel">
+        </div>
+        <div>
+          <label
+            style="font-size:.8rem;font-weight:600;color:#5d6b82;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:8px">Full
+            Address *</label>
+          <input class="form-input" id="f-address" type="text" placeholder="123 Main St, Sydney NSW 2000"
+            autocomplete="street-address">
+        </div>
+        <div>
+          <label
+            style="font-size:.8rem;font-weight:600;color:#5d6b82;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:8px">Additional
+            Requirements <span style="font-weight:400;color:#9ca3af">(optional)</span></label>
+          <textarea class="form-input" id="f-notes" rows="3"
+            placeholder="Any specific concerns or questions..."></textarea>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:28px">
+        <button class="btn-secondary" style="flex:1;padding:18px" onclick="prevStep(5)"><span
+            class="material-symbols-outlined">arrow_back</span> Back</button>
+        <button class="btn-primary" style="flex:2;padding:18px" id="submit-btn" onclick="submitQuote()">
+          <span id="submit-text">Get My Free Quote</span>
+          <span class="material-symbols-outlined" id="submit-icon">send</span>
+        </button>
+      </div>
+      <p style="text-align:center;font-size:.8rem;color:#9ca3af;margin-top:16px">🔒 Your information is safe and secure.
+      </p>
+    </div>
+
+    <!-- SUCCESS PAGE -->
+    <div class="step" id="step-success">
+      <div style="text-align:center;padding:16px 0 32px">
+        <div
+          style="width:80px;height:80px;background:linear-gradient(135deg,#e52920,#c00007);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px">
+          <span class="material-symbols-outlined"
+            style="color:#fff;font-size:40px;font-variation-settings:'FILL' 1">check_circle</span>
+        </div>
+        <h1 style="font-family:Manrope,sans-serif;font-weight:800;font-size:1.8rem;color:#191c1d;margin:0 0 12px">
+          Request Received! 🎉</h1>
+        <p style="color:#5d6b82;font-size:1rem;max-width:400px;margin:0 auto 32px;line-height:1.6">Thank you! We've
+          received your quote request and will be in touch shortly via your preferred contact method.</p>
+        <div
+          style="background:linear-gradient(135deg,#e52920,#c00007);border-radius:16px;padding:24px;text-align:left;margin-bottom:28px">
+          <p
+            style="color:rgba(255,255,255,.8);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin:0 0 12px">
+            ⚡ What happens next?</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div
+                style="width:28px;height:28px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-weight:700;font-size:.85rem">
+                1</div>
+              <p style="color:#fff;margin:0;font-size:.9rem">Our team reviews your request (Will get back to you as soon
+                as possible)</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <div
+                style="width:28px;height:28px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-weight:700;font-size:.85rem">
+                2</div>
+              <p style="color:#fff;margin:0;font-size:.9rem">We contact you via your preferred method</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <div
+                style="width:28px;height:28px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-weight:700;font-size:.85rem">
+                3</div>
+              <p style="color:#fff;margin:0;font-size:.9rem">Free site inspection &amp; personalised quote provided</p>
+            </div>
+          </div>
+        </div>
+        <h3 style="font-family:Manrope,sans-serif;font-weight:800;font-size:1.1rem;color:#191c1d;margin:0 0 16px">
+          Benefits of Professional Roof Restoration</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+          <div class="benefit-card"><span class="material-symbols-outlined"
+              style="color:#c00007;flex-shrink:0;font-variation-settings:'FILL' 1">verified</span>
+            <p style="margin:0;font-size:.9rem;color:#191c1d">Extends your roof lifespan by up to 15–20 years, saving
+              you thousands</p>
+          </div>
+          <div class="benefit-card"><span class="material-symbols-outlined"
+              style="color:#c00007;flex-shrink:0;font-variation-settings:'FILL' 1">water_drop</span>
+            <p style="margin:0;font-size:.9rem;color:#191c1d">Prevents water leaks and costly structural damage before
+              it starts</p>
+          </div>
+          <div class="benefit-card"><span class="material-symbols-outlined"
+              style="color:#c00007;flex-shrink:0;font-variation-settings:'FILL' 1">home</span>
+            <p style="margin:0;font-size:.9rem;color:#191c1d">Dramatically boosts your home's curb appeal and resale
+              value up to $20,000-$30,000</p>
+          </div>
+          <div class="benefit-card"><span class="material-symbols-outlined"
+              style="color:#c00007;flex-shrink:0;font-variation-settings:'FILL' 1">eco</span>
+            <p style="margin:0;font-size:.9rem;color:#191c1d">Eco-friendly treatments safe for your family, pets &amp;
+              garden</p>
+          </div>
+        </div>
+        <div style="margin-bottom:40px;">
+          <div style="text-align:center;margin-bottom:24px">
+            <h3 style="font-family:Manrope,sans-serif;font-weight:800;font-size:1.4rem;color:#191c1d;margin:0 0 8px">Why a Site Inspection is Essential</h3>
+            <p style="color:#5d6b82;font-size:.95rem;margin:0">Precision requires proximity. Here's why we need to see it up close.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;text-align:left">
+            <!-- Card 1 -->
+            <div style="background:#fff;border:1px solid #f3f4f5;border-radius:16px;padding:20px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 4px 20px rgba(0,0,0,0.03)">
+              <div style="width:40px;height:40px;background:#e8f0fe;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <span class="material-symbols-outlined" style="color:#1a73e8;font-size:20px">search</span>
+              </div>
+              <div>
+                <h4 style="font-family:Manrope,sans-serif;font-weight:700;font-size:1.05rem;color:#191c1d;margin:0 0 6px">Accurate Assessment</h4>
+                <p style="margin:0;font-size:.85rem;color:#5d6b82;line-height:1.5">Every roof is unique; we need to see it up close to provide a tailored, effective solution.</p>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div style="background:#fff;border:1px solid #f3f4f5;border-radius:16px;padding:20px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 4px 20px rgba(0,0,0,0.03)">
+              <div style="width:40px;height:40px;background:#e8f0fe;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <span class="material-symbols-outlined" style="color:#1a73e8;font-size:20px">visibility_off</span>
+              </div>
+              <div>
+                <h4 style="font-family:Manrope,sans-serif;font-weight:700;font-size:1.05rem;color:#191c1d;margin:0 0 6px">Hidden Issues</h4>
+                <p style="margin:0;font-size:.85rem;color:#5d6b82;line-height:1.5">Checking for structural damage or moisture traps that aren't visible from the ground.</p>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div style="background:#fff;border:1px solid #f3f4f5;border-radius:16px;padding:20px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 4px 20px rgba(0,0,0,0.03)">
+              <div style="width:40px;height:40px;background:#e8f0fe;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <span class="material-symbols-outlined" style="color:#1a73e8;font-size:20px">security</span>
+              </div>
+              <div>
+                <h4 style="font-family:Manrope,sans-serif;font-weight:700;font-size:1.05rem;color:#191c1d;margin:0 0 6px">Safety First</h4>
+                <p style="margin:0;font-size:.85rem;color:#5d6b82;line-height:1.5">Professional assessment of ridge caps and tile integrity to ensure your home remains secure.</p>
+              </div>
+            </div>
+            <!-- Card 4 -->
+            <div style="background:#fff;border:1px solid #f3f4f5;border-radius:16px;padding:20px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 4px 20px rgba(0,0,0,0.03)">
+              <div style="width:40px;height:40px;background:#e8f0fe;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <span class="material-symbols-outlined" style="color:#1a73e8;font-size:20px">request_quote</span>
+              </div>
+              <div>
+                <h4 style="font-family:Manrope,sans-serif;font-weight:700;font-size:1.05rem;color:#191c1d;margin:0 0 6px">Fixed Quote</h4>
+                <p style="margin:0;font-size:.85rem;color:#5d6b82;line-height:1.5">A thorough inspection ensures an accurate quote, meaning no 'surprises' once the job starts.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Our Recent Projects -->
+        <div style="margin-bottom:40px;text-align:left">
+          <div style="text-align:center;margin-bottom:24px">
+            <h3 style="font-family:Manrope,sans-serif;font-weight:800;font-size:1.4rem;color:#191c1d;margin:0">Our Recent Projects</h3>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:32px" id="recent-projects-container">
+            <!-- Populated by Javascript below -->
+          </div>
+        </div>
+        <!-- Social Links -->
+        <div style="margin-bottom:24px;display:flex;justify-content:center;gap:16px;">
+          <a href="https://www.facebook.com/share/1BkMovm65B/?mibextid=wwXIfr" target="_blank" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:#f3f4f5;border-radius:50%;color:#1877F2;text-decoration:none;transition:all 0.2s;" title="Follow us on Facebook">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V7.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/besttroofwash?igsh=ajB4N3FxbHZqZmFk" target="_blank" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:#f3f4f5;border-radius:50%;color:#E4405F;text-decoration:none;transition:all 0.2s;" title="Follow us on Instagram">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </a>
+        </div>
+        <a href="index.html"
+          style="display:inline-flex;align-items:center;gap:8px;background:#f3f4f5;color:#191c1d;text-decoration:none;padding:14px 28px;border-radius:14px;font-family:Manrope,sans-serif;font-weight:700;font-size:.95rem">
+          <span class="material-symbols-outlined">home</span> Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Capture tracking data
+    var tracking = (function () {
+      var p = new URLSearchParams(window.location.search);
+      return {
+        utm_source: p.get('utm_source') || '',
+        utm_medium: p.get('utm_medium') || '',
+        utm_campaign: p.get('utm_campaign') || '',
+        utm_content: p.get('utm_content') || '',
+        utm_term: p.get('utm_term') || '',
+        fbclid: p.get('fbclid') || '',
+        timestamp: new Date().toISOString(),
+        pageUrl: window.location.href,
+        referrer: document.referrer
+      };
+    })();
+
+    var answers = { roofType: '', tileDamage: '', hasLeak: '', services: [], contactMethod: '', name: '', email: '', phone: '', address: '', notes: '' };
+    var currentStep = 1;
+    var totalSteps = 6;
+    var isSubmitting = false;
+
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg || 'Please select the options.';
+      t.classList.add('show');
+      setTimeout(function () { t.classList.remove('show'); }, 2800);
+    }
+
+    function updateProgress(step) {
+      var pct = Math.round((step / totalSteps) * 100);
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('step-pct').textContent = pct + '%';
+      document.getElementById('step-label').textContent = 'Step ' + step + ' of ' + totalSteps;
+    }
+
+    function goToStep(n) {
+      document.querySelectorAll('.step').forEach(function (s) { s.classList.remove('active'); });
+      var el = document.getElementById('step-' + n);
+      if (el) { el.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+      if (n === 'success') {
+        document.getElementById('progress-fill').style.width = '100%';
+        document.getElementById('step-pct').textContent = '100%';
+        document.getElementById('step-label').textContent = 'Complete!';
+        return;
+      }
+      currentStep = n;
+      updateProgress(n);
+    }
+
+    function selectOpt(btn) {
+      var step = btn.getAttribute('data-step');
+      document.querySelectorAll('[data-step="' + step + '"]').forEach(function (b) { b.classList.remove('selected'); });
+      btn.classList.add('selected');
+      var field = { 1: 'roofType', 2: 'tileDamage', 3: 'hasLeak', 5: 'contactMethod' }[step];
+      if (field) answers[field] = btn.getAttribute('data-value');
+    }
+
+    function selectMulti(btn) {
+      btn.classList.toggle('selected');
+      answers.services = [];
+      document.querySelectorAll('[data-step="4"].selected').forEach(function (b) { answers.services.push(b.getAttribute('data-value')); });
+    }
+
+    function nextStep(to) {
+      var from = to - 1;
+      if (from === 4) {
+        if (answers.services.length === 0) { showToast('Please select the options.'); return; }
+      } else {
+        var fields = { 1: 'roofType', 2: 'tileDamage', 3: 'hasLeak', 5: 'contactMethod' };
+        var key = fields[from];
+        if (key && !answers[key]) { showToast('Please select the options.'); return; }
+      }
+      goToStep(to);
+    }
+
+    function prevStep(to) { goToStep(to); }
+
+    function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+    function submitQuote() {
+      if (isSubmitting) return;
+      var name = document.getElementById('f-name').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+      var phone = document.getElementById('f-phone').value.trim();
+      var address = document.getElementById('f-address').value.trim();
+      var notes = document.getElementById('f-notes').value.trim();
+      var hasErr = false;
+      ['f-name', 'f-email', 'f-phone', 'f-address'].forEach(function (id) {
+        document.getElementById(id).classList.remove('error');
+      });
+      if (!name) { document.getElementById('f-name').classList.add('error'); hasErr = true; }
+      if (!email || !validateEmail(email)) { document.getElementById('f-email').classList.add('error'); hasErr = true; }
+      if (!phone) { document.getElementById('f-phone').classList.add('error'); hasErr = true; }
+      if (!address) { document.getElementById('f-address').classList.add('error'); hasErr = true; }
+      if (hasErr) { showToast('Please fill in all required fields.'); return; }
+      answers.name = name; answers.email = email; answers.phone = phone; answers.address = address; answers.notes = notes;
+      isSubmitting = true;
+      var btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      document.getElementById('submit-text').textContent = 'Submitting...';
+      document.getElementById('submit-icon').textContent = 'hourglass_empty';
+      var payload = Object.assign({}, answers, { tracking: tracking });
+      // TODO: Connect Resend / Netlify Function later
+      // TODO: Add Meta Pixel Lead event after real Pixel ID is available
+      console.log('Quote Request Submitted:', JSON.stringify(payload, null, 2));
+      setTimeout(function () {
+        goToStep('success');
+        isSubmitting = false;
+      }, 1200);
+    }
+
+    // Render Recent Projects Dummy Images
+    document.addEventListener('DOMContentLoaded', function() {
+      var projects = [
+        { name: 'Roof Restoration', prefix: 'roofrestoration' },
+        { name: 'Gutter Cleaning', prefix: 'guttercleaning' },
+        { name: 'Gutter Guard Installation', prefix: 'gutterguard' },
+        { name: 'Bird Proofing', prefix: 'bird' },
+        { name: 'House Washing', prefix: 'housewashing' },
+        { name: 'Driveway Washing', prefix: 'drivewaywash' }
+      ];
+      var container = document.getElementById('recent-projects-container');
+      if(container) {
+        var html = '';
+        projects.forEach(function(proj) {
+          html += '<div>' +
+            '<h4 style="font-family:Manrope,sans-serif;font-weight:700;font-size:1.1rem;color:#c00007;margin:0 0 12px;border-bottom:2px solid #e7e8e9;padding-bottom:8px;">' + proj.name + '</h4>' +
+            '<div class="recent-projects-grid">';
+          for(var i=1; i<=8; i++) {
+            var imgSrc = 'images/' + proj.prefix + i + '-getquote.jpg';
+            html += '<div style="aspect-ratio:16/9;background:#f3f4f5;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #e7e8e9;position:relative;overflow:hidden;">' +
+                    '<img src="' + imgSrc + '" alt="' + proj.name + ' ' + i + '" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'; this.parentElement.innerHTML=\'<span style=\\\'opacity:0.4;font-size:1.5rem\\\'>📸</span>\';">' +
+                    '</div>';
+          }
+          html += '</div></div>';
+        });
+        container.innerHTML = html;
+      }
+    });
+  </script>
+</body>
+
+</html>

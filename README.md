@@ -28,10 +28,38 @@ This project is a fully functional static website designed to capture leads, sho
 ├── about.html       # Company information
 ├── services.html    # Detailed breakdown of services
 ├── process.html     # Step-by-step restoration process
-├── gallery.html     # Portfolio of completed projects
 ├── contact.html     # Dedicated contact page & info
+├── get-quote.html   # Facebook Ads lead funnel — 6-step quote wizard
 └── images/          # Directory containing all local assets
 ```
+
+## 📋 Get Quote Page (`/get-quote`)
+
+This is the **main lead generation funnel page**, designed as a Facebook Ads landing page.
+
+### How it works
+- **6-step wizard flow** — one question per screen, no distractions
+- No header/navbar shown — users stay focused on completing the form
+- Step 4 is **multi-select** (services); all other steps are single-select
+- Validation popup shows exact text: `"Please select the options."`
+- On submit, all answers are logged to the browser console (see below)
+
+### Email / API integration
+> ⚠️ Email is **not connected yet**.  
+> All form data is stored in a JavaScript object and logged to the console on submit.  
+> See the `// TODO: Connect Resend / Netlify Function later` comment in `get-quote.html`.
+
+### Tracking data captured
+Each submission automatically captures: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`, `timestamp`, `pageUrl`, `referrer`.
+
+### Meta Pixel Integration
+> ⚠️ Meta Pixel is **not added yet**.
+> A Lead event will be added later only after the real Pixel ID is available. No fake tracking code has been added.
+
+### Design
+- **Mobile-first** — optimised for 320px–430px screens (Facebook Ads traffic)
+- Clean wizard UI, large tap-friendly cards, no horizontal scroll
+- Matches the existing site brand (Manrope + Inter fonts, red/blue palette)
 
 ## 🚀 How to View Locally
 
