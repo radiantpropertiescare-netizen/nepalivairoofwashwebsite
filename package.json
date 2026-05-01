@@ -1,0 +1,24 @@
+{
+  "name": "nepali-vai-roof-wash",
+  "version": "1.0.0",
+  "description": "A premium, responsive, lead-generation website designed for Nepali Vai Roof Wash, a professional roof restoration and exterior cleaning business based in Sydney, Australia.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radiantpropertiescare-netizen/nepalivairoofwashwebsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/radiantpropertiescare-netizen/nepalivairoofwashwebsite/issues"
+  },
+  "homepage": "https://github.com/radiantpropertiescare-netizen/nepalivairoofwashwebsite#readme",
+  "dependencies": {
+    "resend": "^6.12.2"
+  }
+}

@@ -522,6 +522,10 @@
         <p style="color:#5d6b82;margin:0;font-size:.95rem">We'll use this to send your free quote. 100% no spam.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:none;" aria-hidden="true">
+          <label for="f-website">Website</label>
+          <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <div>
           <label
             style="font-size:.8rem;font-weight:600;color:#5d6b82;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:8px">Full
@@ -788,13 +792,14 @@
 
     function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
 
-    function submitQuote() {
+    async function submitQuote() {
       if (isSubmitting) return;
       var name = document.getElementById('f-name').value.trim();
       var email = document.getElementById('f-email').value.trim();
       var phone = document.getElementById('f-phone').value.trim();
       var address = document.getElementById('f-address').value.trim();
       var notes = document.getElementById('f-notes').value.trim();
+      var website = document.getElementById('f-website').value.trim();
       var hasErr = false;
       ['f-name', 'f-email', 'f-phone', 'f-address'].forEach(function (id) {
         document.getElementById(id).classList.remove('error');
@@ -804,20 +809,45 @@
       if (!phone) { document.getElementById('f-phone').classList.add('error'); hasErr = true; }
       if (!address) { document.getElementById('f-address').classList.add('error'); hasErr = true; }
       if (hasErr) { showToast('Please fill in all required fields.'); return; }
+      
       answers.name = name; answers.email = email; answers.phone = phone; answers.address = address; answers.notes = notes;
+      if (website) { answers.website = website; }
+      
       isSubmitting = true;
       var btn = document.getElementById('submit-btn');
       btn.disabled = true;
       document.getElementById('submit-text').textContent = 'Submitting...';
       document.getElementById('submit-icon').textContent = 'hourglass_empty';
+      
       var payload = Object.assign({}, answers, { tracking: tracking });
-      // TODO: Connect Resend / Netlify Function later
-      // TODO: Add Meta Pixel Lead event after real Pixel ID is available
-      console.log('Quote Request Submitted:', JSON.stringify(payload, null, 2));
-      setTimeout(function () {
-        goToStep('success');
+      
+      try {
+        const response = await fetch('/.netlify/functions/send-quote', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          // TODO: Add Meta Pixel Lead event after real Pixel ID is available
+          goToStep('success');
+        } else {
+          showToast('Something went wrong. Please try again or contact us directly.');
+          btn.disabled = false;
+          document.getElementById('submit-text').textContent = 'Get My Free Quote';
+          document.getElementById('submit-icon').textContent = 'send';
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        showToast('Network error. Please try again.');
+        btn.disabled = false;
+        document.getElementById('submit-text').textContent = 'Get My Free Quote';
+        document.getElementById('submit-icon').textContent = 'send';
+      } finally {
         isSubmitting = false;
-      }, 1200);
+      }
     }
 
     // Render Recent Projects Dummy Images
