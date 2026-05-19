@@ -485,9 +485,9 @@
                     <p class="text-on-surface-variant" style="">Fill out the form below for a fast, free, no-obligation
                         quote on any of our services.</p>
                 </div>
-                <form
+                <form id="services-contact-form"
                     class="bg-surface-container-lowest p-8 rounded-xl shadow-lg border border-outline-variant/10 space-y-6"
-                    action="https://formsubmit.co/nepalivairoofwash@gmail.com" method="POST">
+                    action="/.netlify/functions/send-contact" method="POST">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="space-y-2">
                             <label
@@ -495,7 +495,7 @@
                                 style="">Full Name</label>
                             <input
                                 class="w-full bg-surface-container-high border-none rounded-lg p-3 focus:ring-2 focus:ring-primary/20 transition-all"
-                                placeholder="John Doe" type="text" name="text">
+                                placeholder="John Doe" type="text" name="name">
                         </div>
                         <div class="space-y-2">
                             <label
@@ -503,7 +503,7 @@
                                 style="">Phone Number</label>
                             <input
                                 class="w-full bg-surface-container-high border-none rounded-lg p-3 focus:ring-2 focus:ring-primary/20 transition-all"
-                                placeholder="021 000 0000" type="tel" name="tel">
+                                placeholder="021 000 0000" type="tel" name="phone">
                         </div>
                     </div>
                     <div class="space-y-2">
@@ -535,6 +535,45 @@
                         style="" type="submit">Get Quote </button>
                     <input type="hidden" name="_captcha" value="false">
                 </form>
+                <div id="services-form-status" class="hidden mt-6 text-center font-bold text-lg"></div>
+                <script>
+                    document.getElementById("services-contact-form").addEventListener("submit", function (e) {
+                        e.preventDefault();
+                        const statusDiv = document.getElementById("services-form-status");
+                        const submitBtn = this.querySelector('button[type="submit"]');
+                        const originalBtnText = submitBtn.innerHTML;
+                        
+                        submitBtn.innerHTML = 'Sending...';
+                        submitBtn.disabled = true;
+
+                        fetch(this.action, {
+                            method: this.method,
+                            body: JSON.stringify(Object.fromEntries(new FormData(this))),
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                statusDiv.innerHTML = '<span class="text-green-600">Thank you! Your message has been sent successfully.</span>';
+                                statusDiv.classList.remove("hidden");
+                                this.reset();
+                            } else {
+                                statusDiv.innerHTML = '<span class="text-red-600">Oops! There was a problem submitting your form.</span>';
+                                statusDiv.classList.remove("hidden");
+                            }
+                        })
+                        .catch(error => {
+                            statusDiv.innerHTML = '<span class="text-red-600">Oops! There was a problem submitting your form.</span>';
+                            statusDiv.classList.remove("hidden");
+                        })
+                        .finally(() => {
+                            submitBtn.innerHTML = originalBtnText;
+                            submitBtn.disabled = false;
+                        });
+                    });
+                </script>
             </div>
         </section>
     </main>

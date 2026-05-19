@@ -620,8 +620,8 @@
                         refresh your home's crown?</h2>
                     <p class="text-on-primary/80 text-lg max-w-2xl mx-auto">Get an instant estimate for your roof wash
                         or restoration project today. No obligations, just honest pricing.</p>
-                    <form class="max-w-4xl mx-auto space-y-4 mt-12 text-left"
-                        action="https://formsubmit.co/nepalivairoofwash@gmail.com" method="POST">
+                    <form id="home-contact-form" class="max-w-4xl mx-auto space-y-4 mt-12 text-left"
+                        action="/.netlify/functions/send-contact" method="POST">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="space-y-1">
                                 <input
@@ -664,6 +664,45 @@
                         </div>
                         <input type="hidden" name="_captcha" value="false">
                     </form>
+                    <div id="home-form-status" class="hidden mt-6 text-xl font-bold"></div>
+                    <script>
+                        document.getElementById("home-contact-form").addEventListener("submit", function (e) {
+                            e.preventDefault();
+                            const statusDiv = document.getElementById("home-form-status");
+                            const submitBtn = this.querySelector('button[type="submit"]');
+                            const originalBtnText = submitBtn.innerHTML;
+                            
+                            submitBtn.innerHTML = 'Sending...';
+                            submitBtn.disabled = true;
+
+                            fetch(this.action, {
+                                method: this.method,
+                                body: JSON.stringify(Object.fromEntries(new FormData(this))),
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                }
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    statusDiv.innerHTML = '<span class="text-green-300">Thank you! Your message has been sent successfully.</span>';
+                                    statusDiv.classList.remove("hidden");
+                                    this.reset();
+                                } else {
+                                    statusDiv.innerHTML = '<span class="text-red-300">Oops! There was a problem submitting your form.</span>';
+                                    statusDiv.classList.remove("hidden");
+                                }
+                            })
+                            .catch(error => {
+                                statusDiv.innerHTML = '<span class="text-red-300">Oops! There was a problem submitting your form.</span>';
+                                statusDiv.classList.remove("hidden");
+                            })
+                            .finally(() => {
+                                submitBtn.innerHTML = originalBtnText;
+                                submitBtn.disabled = false;
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </section>

@@ -221,7 +221,7 @@
             <!-- Contact Form (2 Columns) -->
             <div class="lg:col-span-2 bg-surface-container-lowest p-8 md:p-12 rounded-xl shadow-[0px_20px_40px_rgba(25,28,29,0.06)] border border-outline-variant/10">
                 <h2 class="font-display text-2xl font-bold mb-8" style="">Send a Message</h2>
-                <form class="grid grid-cols-1 md:grid-cols-2 gap-6" action="https://formsubmit.co/nepalivairoofwash@gmail.com" method="POST">
+                <form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-6" action="/.netlify/functions/send-contact" method="POST">
                     <div class="space-y-2">
                         <label class="font-label text-sm uppercase tracking-wider text-on-surface-variant" for="name" style="">Full Name</label>
                         <input class="w-full bg-surface-container-high border-none rounded-lg p-4 focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary/20 transition-colors" id="name" placeholder="John Doe" type="text" name="name">
@@ -249,7 +249,47 @@
                     <div class="md:col-span-2 pt-4">
                         <button class="w-full md:w-auto px-8 py-4 bg-primary text-on-primary rounded-md font-display font-semibold tracking-tight hover:bg-red-800 transition-all duration-200 shadow-sm relative overflow-hidden group" type="submit" style="">Get Quote</button>
                     </div>
-                <input type="hidden" name="_captcha" value="false"></form>
+                <input type="hidden" name="_captcha" value="false">
+                </form>
+                <div id="contact-form-status" class="hidden mt-6 text-center font-bold text-lg md:col-span-2"></div>
+                <script>
+                    document.getElementById("contact-form").addEventListener("submit", function (e) {
+                        e.preventDefault();
+                        const statusDiv = document.getElementById("contact-form-status");
+                        const submitBtn = this.querySelector('button[type="submit"]');
+                        const originalBtnText = submitBtn.innerHTML;
+                        
+                        submitBtn.innerHTML = 'Sending...';
+                        submitBtn.disabled = true;
+
+                        fetch(this.action, {
+                            method: this.method,
+                            body: JSON.stringify(Object.fromEntries(new FormData(this))),
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                statusDiv.innerHTML = '<span class="text-green-600">Thank you! Your message has been sent successfully.</span>';
+                                statusDiv.classList.remove("hidden");
+                                this.reset();
+                            } else {
+                                statusDiv.innerHTML = '<span class="text-red-600">Oops! There was a problem submitting your form.</span>';
+                                statusDiv.classList.remove("hidden");
+                            }
+                        })
+                        .catch(error => {
+                            statusDiv.innerHTML = '<span class="text-red-600">Oops! There was a problem submitting your form.</span>';
+                            statusDiv.classList.remove("hidden");
+                        })
+                        .finally(() => {
+                            submitBtn.innerHTML = originalBtnText;
+                            submitBtn.disabled = false;
+                        });
+                    });
+                </script>
             </div>
         </div>
         <!-- Get Quote CTA -->
