@@ -1,0 +1,466 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Roof Colour Preview | Nepali Vai Roof Wash</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001f29",
+                        "outline": "#926f6a",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary-fixed-variant": "#244389",
+                        "primary-container": "#e52920",
+                        "surface": "#f8f9fa",
+                        "primary-fixed-dim": "#ffb4a9",
+                        "on-surface": "#191c1d",
+                        "inverse-surface": "#2e3132",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#ffffff",
+                        "primary-fixed": "#ffdad5",
+                        "surface-dim": "#d9dadb",
+                        "on-primary-fixed": "#410001",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary-fixed": "#bbeaff",
+                        "surface-container": "#edeeef",
+                        "tertiary-fixed-dim": "#9dcee3",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#174c5f",
+                        "tertiary-container": "#4d7d91",
+                        "surface-tint": "#c00007",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#336477",
+                        "secondary": "#3e5ca3",
+                        "on-background": "#191c1d",
+                        "on-secondary-container": "#224288",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f3f4f5",
+                        "secondary-fixed": "#dae2ff",
+                        "inverse-primary": "#ffb4a9",
+                        "surface-container-high": "#e7e8e9",
+                        "primary": "#c00007",
+                        "secondary-fixed-dim": "#b2c5ff",
+                        "secondary-container": "#95b1ff",
+                        "on-secondary-fixed": "#001847",
+                        "on-primary-container": "#140000",
+                        "outline-variant": "#e7bdb7",
+                        "surface-bright": "#f8f9fa",
+                        "on-primary-fixed-variant": "#930004",
+                        "background": "#f8f9fa",
+                        "on-surface-variant": "#5d3f3b",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "display": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    "letterSpacing": {
+                        "headline": "-0.02em",
+                        "label": "0.05em"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .mandala-pattern {
+            background-image: radial-gradient(circle at 50% 50%, rgba(231, 189, 183, 0.1) 0%, transparent 60%);
+            background-size: 100px 100px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #c00007 0%, #e52920 100%);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #e52920 0%, #c00007 100%);
+            box-shadow: 0 4px 15px rgba(192, 0, 7, 0.2);
+        }
+        .swatch-active {
+            ring-width: 2px;
+            ring-color: #c00007; /* primary */
+        }
+        .swatch-label-active {
+            color: #c00007;
+            font-weight: 700;
+        }
+    </style>
+<script>
+        function selectSwatch(sectionId, swatchElement, colorHex, imageUrl) {
+            // Update preview image
+            const previewImage = document.getElementById(sectionId + '-preview');
+            if (previewImage && imageUrl) {
+                previewImage.src = imageUrl;
+            }
+
+            // Reset all swatches in this section
+            const section = document.getElementById(sectionId);
+            const swatches = section.querySelectorAll('.swatch-container');
+            swatches.forEach(s => {
+                const ring = s.querySelector('.swatch-ring');
+                const label = s.querySelector('.swatch-label');
+                ring.classList.remove('ring-primary', 'ring-2');
+                ring.classList.add('ring-transparent');
+                label.classList.remove('text-primary', 'font-bold');
+                label.classList.add('text-on-surface-variant');
+            });
+
+            // Set active swatch
+            const activeRing = swatchElement.querySelector('.swatch-ring');
+            const activeLabel = swatchElement.querySelector('.swatch-label');
+            activeRing.classList.remove('ring-transparent');
+            activeRing.classList.add('ring-primary', 'ring-2');
+            activeLabel.classList.remove('text-on-surface-variant');
+            activeLabel.classList.add('text-primary', 'font-bold');
+        }
+    </script>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Navigation Shell -->
+<nav class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl docked full-width top-0 sticky z-50 transition-colors duration-300 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<img alt="Nepali Vai Roof Wash Logo" class="h-10 w-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj3sK8nQhLKxUD1ev-FlE2Iaca1I2-g1li2T3X082eXlElRAFt5mojvbnQeRSibD_xk-G7eiRP86uANmnwvHjQ90wWJF0TWA-ly989Wd5ct8Re5O8Wrv4mVIHRDNU5SYitLLnoid-SN5nzGuqavhHWAaAFMMhllvBG1OQkD_KmcusAdwRxGz4YcLCmz9kHPPmixNGPurVLWH7JNWgklDUIo8RcD4fYvzUincDctTUaRBBgBj2hl3QmpTbeUderN67Ed-nyiGw4DClm">
+<span class="text-2xl font-headline font-black text-on-surface dark:text-on-surface tracking-tighter">Nepali Vai Roof Wash</span>
+</div>
+<div class="hidden md:flex items-center gap-8 Headlines: font-headline tracking-tight. Labels: font-label font-medium uppercase tracking-wider">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary dark:border-primary-fixed-dim pb-1" href="#">Services</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors" href="#">Our Process</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors" href="#">Gallery</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors" href="#">About Us</a>
+</div>
+<button class="bg-primary-container text-on-primary-container font-label uppercase tracking-wider text-sm font-bold py-2 px-6 rounded-md hover:scale-95 transition-transform duration-150 shadow-sm">
+                Get a Quote
+            </button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative bg-surface pt-20 pb-24 overflow-hidden mandala-pattern">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="z-10">
+<span class="inline-block py-1 px-3 rounded-full bg-tertiary-fixed-dim/20 text-tertiary font-label text-sm uppercase tracking-widest font-bold mb-6">Interactive Design Tool</span>
+<h1 class="text-5xl lg:text-6xl font-display font-extrabold text-on-surface tracking-headline leading-tight mb-6">
+                        Roof Colour Preview
+                    </h1>
+<p class="text-lg text-on-surface-variant font-body mb-8 max-w-xl">
+                        Explore popular roof colour options and see how different finishes can dramatically change the look and feel of your home's exterior.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="btn-primary text-on-primary font-label uppercase tracking-label font-bold py-3 px-8 rounded-md transition-all">
+                            Get My Free Quote
+                        </button>
+<button class="border border-secondary/30 text-secondary font-label uppercase tracking-label font-bold py-3 px-8 rounded-md hover:bg-secondary/5 transition-all">
+                            Contact Us
+                        </button>
+</div>
+</div>
+<div class="relative z-10 lg:h-[600px] rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(25,28,29,0.06)]">
+<img alt="Modern home exterior" class="w-full h-full object-cover" data-alt="A modern, high-end residential home exterior featuring a pristine, freshly cleaned or painted roof under bright, clear daylight. The house showcases a sophisticated architectural style with clean lines and premium materials. The scene is illuminated by a high-key, natural light that highlights the textures of the roof tiles and the lush green landscaping. The overall aesthetic is bright, clean, and aspirational, reflecting a modern light-mode design with subtle, warm undertones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpeA6hKRFMuRYJRuoNvr1i8o56YyYAlgnreSk2dz5xIm4CKKe16vmZupbt03fztw-sEa5vKLgbApsIF3QWoIuMvlkT9269qTp4pYc9uWmeyZ2g05Z_levEn-8npmXtXT050LL6ejy0dgyybrfcM201IUG2HE-5VLd60K5u_oYP2wqb4MmVCSBcIsyyyMhHOKCupqt3zJ8G91D_gaU3bMR3mwhgcRiiy2JhHwKB4SKOfLVJhjzUnnZSE9N1reuSTDez9fhm_j3SgVLf">
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-container-low to-transparent"></div>
+</section>
+<!-- Section 1: Concrete Roof Tile Colours -->
+<section class="py-24 bg-surface-container-low relative" id="concrete-section">
+<div class="absolute top-0 right-0 w-1/3 h-1/3 mandala-pattern opacity-50"></div>
+<div class="max-w-7xl mx-auto px-8 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Preview Area (Spans 7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-4 shadow-[0_20px_40px_rgba(25,28,29,0.04)] relative overflow-hidden group">
+<div class="absolute top-4 right-4 z-10 w-16 h-16 opacity-5 bg-secondary mandala-pattern rounded-bl-full"></div>
+<img alt="Concrete Roof Preview" class="w-full h-[500px] object-cover rounded-lg transition-transform duration-700 group-hover:scale-105" id="concrete-section-preview" src="Images/Colorpreview/Concrete%20JPG/Monument.jpg">
+</div>
+<!-- Colour Selection Area (Spans 5 cols) -->
+<div class="lg:col-span-5 flex flex-col h-full justify-center">
+<h2 class="text-3xl font-display font-bold text-on-surface tracking-headline mb-4">Concrete Roof Tile Colour Options</h2>
+<p class="text-on-surface-variant font-body mb-8">Select a colour to visualize how it might look. Note: Colours are approximate and may vary based on screen settings.</p>
+<div class="grid grid-cols-4 sm:grid-cols-5 gap-6 mb-10">
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#2c2d32', 'Images/Colorpreview/Concrete%20JPG/Monument.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#2c2d32] shadow-sm ring-2 ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-primary font-bold text-center transition-colors">Monument</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#3b3c36', 'Images/Colorpreview/Concrete%20JPG/Charcoal.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#3b3c36] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Charcoal</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#595a5c', 'Images/Colorpreview/Concrete%20JPG/Dark%20Grey.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#595a5c] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Dark Grey</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#6a6f73', 'Images/Colorpreview/Concrete%20JPG/Slate%20Grey.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#6a6f73] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Slate Grey</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#4a4e48', 'Images/Colorpreview/Concrete%20JPG/Woodland%20Grey.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#4a4e48] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Woodland Grey</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#595a5c', 'Images/Colorpreview/Concrete%20JPG/Basalt.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#595a5c] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Basalt</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#3a3e47', 'Images/Colorpreview/Concrete%20JPG/Ironstone.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#3a3e47] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Ironstone</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#d6d5d1', 'Images/Colorpreview/Concrete%20JPG/Surfmist.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#d6d5d1] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/30"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Surfmist</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#9fa1a3', 'Images/Colorpreview/Concrete%20JPG/Shale%20Grey.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#9fa1a3] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Shale Grey</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#b0aea8', 'Images/Colorpreview/Concrete%20JPG/Dune.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#b0aea8] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Dune</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#2c3746', 'Images/Colorpreview/Concrete%20JPG/Deep%20Ocean.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#2c3746] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Deep Ocean</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#5e2a2a', 'Images/Colorpreview/Concrete%20JPG/Manor%20Red.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#5e2a2a] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Manor Red</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#7a201f', 'Images/Colorpreview/Concrete%20JPG/Classic%20Red.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#7a201f] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Classic Red</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#4e3b31', 'Images/Colorpreview/Concrete%20JPG/Earth%20Brown.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#4e3b31] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Earth Brown</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('concrete-section', this, '#b56546', 'Images/Colorpreview/Concrete%20JPG/Terrcota%20Red.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#b56546] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Terracotta Red</span>
+</div>
+</div>
+<button class="mt-auto w-full border border-secondary/30 text-secondary font-label uppercase tracking-label font-bold py-3 px-8 rounded-md hover:bg-secondary/5 transition-all flex items-center justify-center gap-2">
+<span class="">Get Quote for Concrete Roof</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Colorbond Roof Colours -->
+<section class="py-24 bg-surface relative" id="colorbond-section">
+<div class="absolute bottom-0 left-0 w-1/3 h-1/3 mandala-pattern opacity-30"></div>
+<div class="max-w-7xl mx-auto px-8 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Preview Area (Spans 7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-4 shadow-[0_20px_40px_rgba(25,28,29,0.04)] relative overflow-hidden group">
+<div class="absolute top-4 right-4 z-10 w-16 h-16 opacity-5 bg-secondary mandala-pattern rounded-bl-full"></div>
+<img alt="Colorbond Roof Preview" class="w-full h-[500px] object-cover rounded-lg transition-transform duration-700 group-hover:scale-105" id="colorbond-section-preview" src="Images/Colorpreview/Colorbonde%20JPG/Monument.jpg">
+</div>
+<!-- Colour Selection Area (Spans 5 cols) -->
+<div class="lg:col-span-5 flex flex-col h-full justify-center">
+<h2 class="text-3xl font-display font-bold text-on-surface tracking-headline mb-4">Colorbond Roof Colour Options</h2>
+<p class="text-on-surface-variant font-body mb-8">Select a colour to visualize how it might look. Note: Colours are approximate and may vary based on screen settings.</p>
+<div class="grid grid-cols-4 sm:grid-cols-5 gap-6 mb-10">
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#2c2d32', 'Images/Colorpreview/Colorbonde%20JPG/Monument.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#2c2d32] shadow-sm ring-2 ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-primary font-bold text-center transition-colors">Monument</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#4a4e48', 'Images/Colorpreview/Colorbonde%20JPG/Woodland%20Grey.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#4a4e48] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Woodland Grey</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#d6d5d1', 'Images/Colorpreview/Colorbonde%20JPG/Surfmist.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#d6d5d1] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/30"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Surfmist</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#9fa1a3', 'Images/Colorpreview/Colorbonde%20JPG/Shale%20Grey.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#9fa1a3] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Shale Grey</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#595a5c', 'Images/Colorpreview/Colorbonde%20JPG/Basalt.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#595a5c] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Basalt</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#b0aea8', 'Images/Colorpreview/Colorbonde%20JPG/Dune.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#b0aea8] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Dune</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#2c3746', 'Images/Colorpreview/Colorbonde%20JPG/Deep%20Ocean.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#2c3746] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Deep Ocean</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#3a3e47', 'Images/Colorpreview/Colorbonde%20JPG/Ironstone.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#3a3e47] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Ironstone</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#5e2a2a', 'Images/Colorpreview/Colorbonde%20JPG/Manor%20Red.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#5e2a2a] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Manor Red</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#1a1b1c', 'Images/Colorpreview/Colorbonde%20JPG/Nightsky.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#1a1b1c] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Night Sky</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#868e8e', 'Images/Colorpreview/Colorbonde%20JPG/Windspray.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#868e8e] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Windspray</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#5e564d', 'Images/Colorpreview/Colorbonde%20JPG/Jasper.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#5e564d] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Jasper</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#77756f', 'Images/Colorpreview/Colorbonde%20JPG/Gully.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#77756f] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Gully</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#726d69', 'Images/Colorpreview/Colorbonde%20JPG/Wallaby.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#726d69] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Wallaby</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('colorbond-section', this, '#e7e5e0', 'Images/Colorpreview/Colorbonde%20JPG/Dover%20white.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#e7e5e0] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/30"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Dover White</span>
+</div>
+</div>
+<button class="mt-auto w-full border border-secondary/30 text-secondary font-label uppercase tracking-label font-bold py-3 px-8 rounded-md hover:bg-secondary/5 transition-all flex items-center justify-center gap-2">
+<span class="">Get Quote for Colorbond Roof</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Terracotta (Educational) -->
+<section class="py-24 bg-surface-container-low relative overflow-hidden" id="terracotta-section">
+<div class="absolute right-0 top-0 w-1/2 h-1/2 mandala-pattern opacity-30 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-8 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Preview Area (Spans 7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-4 shadow-[0_20px_40px_rgba(25,28,29,0.04)] relative overflow-hidden group">
+<div class="absolute top-4 right-4 z-10 w-16 h-16 opacity-5 bg-secondary mandala-pattern rounded-bl-full"></div>
+<img alt="Terracotta Roof Preview" class="w-full h-[500px] object-cover rounded-lg transition-transform duration-700 group-hover:scale-105" id="terracotta-section-preview" src="Images/Colorpreview/Terracota%20JPG/Natural%20Terracota.jpg">
+</div>
+<!-- Content Area (Spans 5 cols) -->
+<div class="lg:col-span-5 flex flex-col h-full justify-center">
+<span class="inline-block py-1 px-3 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label text-sm uppercase tracking-widest font-bold mb-4 w-max">Heritage Care</span>
+<h2 class="text-3xl font-display font-bold text-on-surface tracking-headline mb-4">Terracotta Roof Tile Colour Guidance</h2>
+<p class="text-on-surface-variant font-body mb-6 leading-relaxed">
+                            True terracotta roof tiles are made from natural clay and fired at high temperatures. This process bakes the colour deep into the tile, ensuring it never fades. Because of this natural beauty and durability, we strongly advise against painting natural terracotta.
+                        </p>
+<!-- Swatches -->
+<h3 class="text-sm font-label uppercase tracking-widest font-bold text-on-surface mb-4">Natural Clay Finishes</h3>
+<div class="grid grid-cols-4 sm:grid-cols-5 gap-6 mb-8">
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('terracotta-section', this, '#b56546', 'Images/Colorpreview/Terracota%20JPG/Natural%20Terracota.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#b56546] shadow-sm ring-2 ring-primary transition-all border border-outline-variant/50"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-primary font-bold text-center transition-colors">Natural Terracotta</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('terracotta-section', this, '#c07b5b', 'Images/Colorpreview/Terracota%20JPG/Classic%20Clay.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#c07b5b] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/50"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Classic Clay</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('terracotta-section', this, '#8c4a32', 'Images/Colorpreview/Terracota%20JPG/Aged%20Terracota.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#8c4a32] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/50"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Aged Terracotta</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('terracotta-section', this, '#6b3320', 'Images/Colorpreview/Terracota%20JPG/Deep%20Terracota.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#6b3320] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/50"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Deep Terracotta</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('terracotta-section', this, '#80211a', 'Images/Colorpreview/Terracota%20JPG/Heritage%20Red.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#80211a] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/50"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Heritage Red</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('terracotta-section', this, '#4e3b31', 'Images/Colorpreview/Terracota%20JPG/Earth%20Brown.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#4e3b31] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/50"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Earth Brown</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('terracotta-section', this, '#cc5500', 'Images/Colorpreview/Terracota%20JPG/Burnt%20Orange.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#cc5500] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/50"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Burnt Orange</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('terracotta-section', this, '#a52a2a', 'Images/Colorpreview/Terracota%20JPG/Rustic%20Red.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#a52a2a] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/50"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Rustic Red</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('terracotta-section', this, '#8b0000', 'Images/Colorpreview/Terracota%20JPG/Antique%20Red.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#8b0000] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/50"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Antique Red</span>
+</div>
+<div class="swatch-container flex flex-col items-center gap-2 cursor-pointer group" onclick="selectSwatch('terracotta-section', this, '#5c4033', 'Images/Colorpreview/Terracota%20JPG/Warm%20brown.jpg')">
+<div class="swatch-ring w-12 h-12 rounded-xl bg-[#5c4033] shadow-sm ring-2 ring-transparent group-hover:ring-primary transition-all border border-outline-variant/50"></div>
+<span class="swatch-label text-[10px] font-label uppercase tracking-label text-on-surface-variant text-center transition-colors">Warm Brown</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-6 mb-8 border-l-4 border-primary">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">info</span>
+<div>
+<h4 class="font-headline font-bold text-on-surface mb-2">Our Recommendation</h4>
+<p class="text-sm text-on-surface-variant font-body">Instead of painting, we recommend a professional wash and necessary repairs to restore their original, vibrant clay finish. Preserving the natural glaze protects the tile's integrity and your home's heritage.</p>
+</div>
+</div>
+</div>
+<button class="btn-primary w-full text-on-primary font-label uppercase tracking-label font-bold py-3 px-8 rounded-md transition-all flex items-center justify-center gap-2 mt-auto">
+<span class="">Get quote for Terracotta Roof</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-secondary dark:bg-inverse-surface w-full relative flat no shadows">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 py-16 max-w-7xl mx-auto">
+<div class="md:col-span-1">
+<div class="flex items-center gap-3 mb-6">
+<img alt="Nepali Vai Roof Wash Logo" class="h-8 w-8 object-contain brightness-0 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj3sK8nQhLKxUD1ev-FlE2Iaca1I2-g1li2T3X082eXlElRAFt5mojvbnQeRSibD_xk-G7eiRP86uANmnwvHjQ90wWJF0TWA-ly989Wd5ct8Re5O8Wrv4mVIHRDNU5SYitLLnoid-SN5nzGuqavhHWAaAFMMhllvBG1OQkD_KmcusAdwRxGz4YcLCmz9kHPPmixNGPurVLWH7JNWgklDUIo8RcD4fYvzUincDctTUaRBBgBj2hl3QmpTbeUderN67Ed-nyiGw4DClm">
+<span class="text-xl font-headline font-bold text-surface dark:text-surface-bright tracking-tighter">Nepali Vai</span>
+</div>
+<p class="font-body text-surface dark:text-surface-container-low text-sm opacity-80 leading-relaxed">
+                    © 2024 Nepali Vai Roof Wash. Heritage Care. Professional roof washing and restoration services.
+                </p>
+</div>
+<div class="md:col-span-1">
+<h4 class="font-label uppercase tracking-widest text-secondary-fixed text-xs mb-6 font-bold">Services</h4>
+<div class="flex flex-col gap-4 font-body text-sm">
+<a class="text-surface-container-highest/80 hover:text-surface hover:text-tertiary-fixed transition-all underline decoration-tertiary-fixed/30" href="#">Residential Cleaning</a>
+<a class="text-surface-container-highest/80 hover:text-surface hover:text-tertiary-fixed transition-all underline decoration-tertiary-fixed/30" href="#">Commercial Care</a>
+<a class="text-surface-container-highest/80 hover:text-surface hover:text-tertiary-fixed transition-all underline decoration-tertiary-fixed/30" href="#">Roof Painting</a>
+<a class="text-surface-container-highest/80 hover:text-surface hover:text-tertiary-fixed transition-all underline decoration-tertiary-fixed/30" href="#">Pressure Wash</a>
+</div>
+</div>
+<div class="md:col-span-1">
+<h4 class="font-label uppercase tracking-widest text-secondary-fixed text-xs mb-6 font-bold">Company</h4>
+<div class="flex flex-col gap-4 font-body text-sm">
+<a class="text-surface-container-highest/80 hover:text-surface hover:text-tertiary-fixed transition-all underline decoration-tertiary-fixed/30" href="#">About Us</a>
+<a class="text-surface-container-highest/80 hover:text-surface hover:text-tertiary-fixed transition-all underline decoration-tertiary-fixed/30" href="#">Contact Us</a>
+<a class="text-surface-container-highest/80 hover:text-surface hover:text-tertiary-fixed transition-all underline decoration-tertiary-fixed/30" href="#">Privacy Policy</a>
+</div>
+</div>
+<div class="md:col-span-1">
+<h4 class="font-label uppercase tracking-widest text-secondary-fixed text-xs mb-6 font-bold">Action</h4>
+<button class="w-full bg-surface text-secondary font-label uppercase tracking-wider text-sm font-bold py-3 px-6 rounded-md hover:bg-surface-container-high transition-transform duration-150 shadow-sm mb-4">
+                    Request Callback
+                </button>
+</div>
+</div>
+</footer>
+
+
+</body></html>
