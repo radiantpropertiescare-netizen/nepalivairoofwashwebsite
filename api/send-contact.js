@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
   // 1. Only allow POST
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST']);
-    return res.status(405).json({ error: 'Method Not Allowed' });
+    return res.status(405).json({ success: false, error: 'Method Not Allowed' });
   }
 
   try {
@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
       try {
         data = JSON.parse(req.body);
       } catch (err) {
-        return res.status(400).json({ error: 'Invalid JSON payload' });
+        return res.status(400).json({ success: false, error: 'Invalid JSON payload' });
       }
     } else {
       data = req.body || {};
@@ -54,7 +54,7 @@ module.exports = async (req, res) => {
 
     // 3. Honeypot check (silently accept bot submissions)
     if (data.website || data._gotcha) {
-      return res.status(200).json({ message: 'Request received' });
+      return res.status(200).json({ success: true, message: 'Request received' });
     }
 
     // 4. Extract fields
@@ -71,18 +71,18 @@ module.exports = async (req, res) => {
     // 5. Validation
     const trimmedName = String(name).trim();
     if (!trimmedName) {
-      return res.status(400).json({ error: 'Name is required' });
+      return res.status(400).json({ success: false, error: 'Name is required' });
     }
 
     const trimmedPhone = String(phone).trim();
     const trimmedEmail = String(email).trim();
     if (!trimmedPhone && !trimmedEmail) {
-      return res.status(400).json({ error: 'Please provide either a phone number or an email address' });
+      return res.status(400).json({ success: false, error: 'Please provide either a phone number or an email address' });
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (trimmedEmail && !emailRegex.test(trimmedEmail)) {
-      return res.status(400).json({ error: 'Invalid email format' });
+      return res.status(400).json({ success: false, error: 'Invalid email format' });
     }
 
     // 6. Normalise subject
@@ -127,30 +127,46 @@ module.exports = async (req, res) => {
       <p>${safeMessage}</p>
     `;
 
-    // 9. Send Email via Resend
-    const resend = getResendClient();
-    const emailPayload = {
+    // 9. Build emailOptions explicitly using the same environment-variable strategy as working send-quote
+    const emailOptions = {
       from: process.env.QUOTE_FROM_EMAIL || 'quotes@nepalivairoofwash.com.au',
       to: [process.env.QUOTE_TO_EMAIL || 'nepalivairoofwash@gmail.com'],
       subject: `New Message: ${safeSubject} - Nepali Vai Roof Wash`,
-      html: htmlContent,
+      html: htmlContent
     };
 
-    // Only set reply_to if customer provided a valid email address
+    // Only set replyTo when a valid customer email exists
     if (trimmedEmail && emailRegex.test(trimmedEmail)) {
-      emailPayload.reply_to = trimmedEmail;
+      emailOptions.replyTo = trimmedEmail;
     }
 
-    const { data: resendData, error } = await resend.emails.send(emailPayload);
+    // 10. Send Email via Resend
+    const resend = getResendClient();
+    const { data: resendData, error } = await resend.emails.send(emailOptions);
 
     if (error) {
-      console.error('Resend API Error:', error);
-      return res.status(500).json({ error: 'Failed to send email' });
+      console.error('Resend send-contact error:', {
+        name: error.name,
+        message: error.message || error.error,
+        statusCode: error.statusCode
+      });
+
+      return res.status(error.statusCode || 500).json({
+        success: false,
+        error: 'Unable to send message'
+      });
     }
 
-    return res.status(200).json({ message: 'Email sent successfully', id: resendData?.id });
+    return res.status(200).json({
+      success: true,
+      message: 'Email sent successfully',
+      id: resendData?.id
+    });
   } catch (error) {
-    console.error('Server Error:', error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Server Error:', error.message || error);
+    return res.status(500).json({
+      success: false,
+      error: 'Internal Server Error'
+    });
   }
 };
