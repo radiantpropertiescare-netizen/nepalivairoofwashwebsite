@@ -490,50 +490,49 @@
                     action="/api/send-contact" method="POST">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="space-y-2">
-                            <label
+                            <label for="services-name"
                                 class="block text-sm font-label font-bold uppercase tracking-wider text-on-surface-variant"
                                 style="">Full Name</label>
-                            <input
+                            <input id="services-name"
                                 class="w-full bg-surface-container-high border-none rounded-lg p-3 focus:ring-2 focus:ring-primary/20 transition-all"
                                 placeholder="John Doe" type="text" name="name">
                         </div>
                         <div class="space-y-2">
-                            <label
+                            <label for="services-phone"
                                 class="block text-sm font-label font-bold uppercase tracking-wider text-on-surface-variant"
                                 style="">Phone Number</label>
-                            <input
+                            <input id="services-phone"
                                 class="w-full bg-surface-container-high border-none rounded-lg p-3 focus:ring-2 focus:ring-primary/20 transition-all"
                                 placeholder="021 000 0000" type="tel" name="phone">
                         </div>
                     </div>
                     <div class="space-y-2">
-                        <label
+                        <label for="services-type"
                             class="block text-sm font-label font-bold uppercase tracking-wider text-on-surface-variant"
                             style="">Service Type</label>
-                        <select
+                        <select id="services-type"
                             class="w-full bg-surface-container-high border-none rounded-lg p-3 focus:ring-2 focus:ring-primary/20 transition-all"
                             name="service_type">
-                            <option>Roof Washing</option>
-                            <option>Roof Painting</option>
-                            <option>Roof Repointing</option>
-                            <option>Gutter Guard Installation</option>
-                            <option>House Washing</option>
-                            <option>Bird Proofing</option>
-                            <option>Gutter Cleaning</option>
+                            <option value="Roof Washing">Roof Washing</option>
+                            <option value="Roof Painting">Roof Painting</option>
+                            <option value="Roof Repointing">Roof Repointing</option>
+                            <option value="Gutter Guard Installation">Gutter Guard Installation</option>
+                            <option value="House Washing">House Washing</option>
+                            <option value="Bird Proofing">Bird Proofing</option>
+                            <option value="Gutter Cleaning">Gutter Cleaning</option>
                         </select>
                     </div>
                     <div class="space-y-2">
-                        <label
+                        <label for="services-message"
                             class="block text-sm font-label font-bold uppercase tracking-wider text-on-surface-variant"
                             style="">Message</label>
-                        <textarea
+                        <textarea id="services-message"
                             class="w-full bg-surface-container-high border-none rounded-lg p-3 focus:ring-2 focus:ring-primary/20 transition-all"
                             placeholder="Tell us about your project..." rows="4" name="message"></textarea>
                     </div>
                     <button
                         class="w-full bg-primary-container text-on-primary py-4 rounded-xl font-headline font-bold text-lg tracking-tight hover:bg-primary transition-all"
                         style="" type="submit">Get Quote </button>
-                    <input type="hidden" name="_captcha" value="false">
                 </form>
                 <div id="services-form-status" class="hidden mt-6 text-center font-bold text-lg"></div>
                 <script>
@@ -543,10 +542,10 @@
                         const submitBtn = this.querySelector('button[type="submit"]');
                         const originalBtnText = submitBtn.innerHTML;
                         
-                        const name = (this.querySelector('[name="name"]')?.value || '').trim();
-                        const phone = (this.querySelector('[name="phone"]')?.value || '').trim();
-                        const serviceType = (this.querySelector('[name="service_type"]')?.value || '').trim();
-                        const message = (this.querySelector('[name="message"]')?.value || '').trim();
+                        const name = (document.getElementById("services-name")?.value || this.querySelector('[name="name"]')?.value || '').trim();
+                        const phone = (document.getElementById("services-phone")?.value || this.querySelector('[name="phone"]')?.value || '').trim();
+                        const service_type = (document.getElementById("services-type")?.value || this.querySelector('[name="service_type"]')?.value || '').trim();
+                        const message = (document.getElementById("services-message")?.value || this.querySelector('[name="message"]')?.value || '').trim();
 
                         if (!name) {
                             statusDiv.innerHTML = '<span class="text-red-600">Please enter your name.</span>';
@@ -563,21 +562,18 @@
                         submitBtn.disabled = true;
                         statusDiv.classList.add("hidden");
 
-                        const payload = {
-                            name: name,
-                            phone: phone,
-                            service_type: serviceType,
-                            message: message
-                        };
-
                         try {
                             const response = await fetch('/api/send-contact', {
                                 method: 'POST',
                                 headers: {
-                                    'Content-Type': 'application/json',
-                                    'Accept': 'application/json'
+                                    'Content-Type': 'application/json'
                                 },
-                                body: JSON.stringify(payload)
+                                body: JSON.stringify({
+                                    name,
+                                    phone,
+                                    service_type,
+                                    message
+                                })
                             });
 
                             if (response.ok) {

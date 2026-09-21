@@ -128,10 +128,11 @@ module.exports = async (req, res) => {
     `;
 
     // 9. Build emailOptions explicitly using the same environment-variable strategy as working send-quote
+    const subjectPrefix = safeSubject.startsWith('Service Inquiry:') ? '' : 'New Message: ';
     const emailOptions = {
       from: process.env.QUOTE_FROM_EMAIL || 'quotes@nepalivairoofwash.com.au',
       to: [process.env.QUOTE_TO_EMAIL || 'nepalivairoofwash@gmail.com'],
-      subject: `New Message: ${safeSubject} - Nepali Vai Roof Wash`,
+      subject: `${subjectPrefix}${safeSubject} - Nepali Vai Roof Wash`,
       html: htmlContent
     };
 
