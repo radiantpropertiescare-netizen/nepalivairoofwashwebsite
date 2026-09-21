@@ -33,12 +33,14 @@ function formatMultiline(str) {
 }
 
 module.exports = async (req, res) => {
+  // 1. Only allow POST
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST']);
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
   try {
+    // 2. Safely parse JSON body
     let data;
     if (typeof req.body === 'string') {
       try {
@@ -50,24 +52,59 @@ module.exports = async (req, res) => {
       data = req.body || {};
     }
 
+    // 3. Honeypot check (silently accept bot submissions)
+    if (data.website || data._gotcha) {
+      return res.status(200).json({ message: 'Request received' });
+    }
+
+    // 4. Extract fields
     const {
-      name = 'N/A',
-      email = 'N/A',
-      phone = 'N/A',
-      subject = 'General Inquiry',
-      address = 'N/A',
-      service_type = 'N/A',
-      message = 'N/A'
+      name = '',
+      email = '',
+      phone = '',
+      subject = '',
+      address = '',
+      service_type = '',
+      message = ''
     } = data;
 
-    const safeName = escapeHtml(name);
-    const safeEmail = escapeHtml(email);
-    const safePhone = escapeHtml(phone);
-    const safeSubject = escapeHtml(subject);
-    const safeAddress = escapeHtml(address);
-    const safeServiceType = escapeHtml(service_type);
-    const safeMessage = formatMultiline(message);
+    // 5. Validation
+    const trimmedName = String(name).trim();
+    if (!trimmedName) {
+      return res.status(400).json({ error: 'Name is required' });
+    }
 
+    const trimmedPhone = String(phone).trim();
+    const trimmedEmail = String(email).trim();
+    if (!trimmedPhone && !trimmedEmail) {
+      return res.status(400).json({ error: 'Please provide either a phone number or an email address' });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (trimmedEmail && !emailRegex.test(trimmedEmail)) {
+      return res.status(400).json({ error: 'Invalid email format' });
+    }
+
+    // 6. Normalise subject
+    let normalizedSubject = String(subject).trim();
+    if (!normalizedSubject) {
+      if (service_type && String(service_type).trim()) {
+        normalizedSubject = `Service Inquiry: ${String(service_type).trim()}`;
+      } else {
+        normalizedSubject = 'General Website Inquiry';
+      }
+    }
+
+    // 7. Sanitize all customer-supplied fields
+    const safeName = escapeHtml(trimmedName);
+    const safeEmail = trimmedEmail ? escapeHtml(trimmedEmail) : 'Not provided';
+    const safePhone = trimmedPhone ? escapeHtml(trimmedPhone) : 'Not provided';
+    const safeSubject = escapeHtml(normalizedSubject);
+    const safeAddress = address && String(address).trim() ? escapeHtml(String(address).trim()) : 'Not provided';
+    const safeServiceType = service_type && String(service_type).trim() ? escapeHtml(String(service_type).trim()) : 'N/A';
+    const safeMessage = message && String(message).trim() ? formatMultiline(String(message).trim()) : 'No message provided';
+
+    // 8. Construct HTML email body
     const htmlContent = `
       <h2>New Contact Form Submission</h2>
       <p>A new message has been submitted from the <strong>Nepali Vai Roof Wash</strong> website.</p>
@@ -90,14 +127,21 @@ module.exports = async (req, res) => {
       <p>${safeMessage}</p>
     `;
 
+    // 9. Send Email via Resend
     const resend = getResendClient();
-    const { data: resendData, error } = await resend.emails.send({
+    const emailPayload = {
       from: process.env.QUOTE_FROM_EMAIL || 'quotes@nepalivairoofwash.com.au',
       to: [process.env.QUOTE_TO_EMAIL || 'nepalivairoofwash@gmail.com'],
-      reply_to: email !== 'N/A' && email !== '' ? email : 'nepalivairoofwash@gmail.com',
       subject: `New Message: ${safeSubject} - Nepali Vai Roof Wash`,
       html: htmlContent,
-    });
+    };
+
+    // Only set reply_to if customer provided a valid email address
+    if (trimmedEmail && emailRegex.test(trimmedEmail)) {
+      emailPayload.reply_to = trimmedEmail;
+    }
+
+    const { data: resendData, error } = await resend.emails.send(emailPayload);
 
     if (error) {
       console.error('Resend API Error:', error);

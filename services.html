@@ -537,41 +537,67 @@
                 </form>
                 <div id="services-form-status" class="hidden mt-6 text-center font-bold text-lg"></div>
                 <script>
-                    document.getElementById("services-contact-form").addEventListener("submit", function (e) {
+                    document.getElementById("services-contact-form").addEventListener("submit", async function (e) {
                         e.preventDefault();
                         const statusDiv = document.getElementById("services-form-status");
                         const submitBtn = this.querySelector('button[type="submit"]');
                         const originalBtnText = submitBtn.innerHTML;
                         
+                        const name = (this.querySelector('[name="name"]')?.value || '').trim();
+                        const phone = (this.querySelector('[name="phone"]')?.value || '').trim();
+                        const serviceType = (this.querySelector('[name="service_type"]')?.value || '').trim();
+                        const message = (this.querySelector('[name="message"]')?.value || '').trim();
+
+                        if (!name) {
+                            statusDiv.innerHTML = '<span class="text-red-600">Please enter your name.</span>';
+                            statusDiv.classList.remove("hidden");
+                            return;
+                        }
+                        if (!phone) {
+                            statusDiv.innerHTML = '<span class="text-red-600">Please provide a phone number.</span>';
+                            statusDiv.classList.remove("hidden");
+                            return;
+                        }
+
                         submitBtn.innerHTML = 'Sending...';
                         submitBtn.disabled = true;
+                        statusDiv.classList.add("hidden");
 
-                        fetch(this.action, {
-                            method: this.method,
-                            body: JSON.stringify(Object.fromEntries(new FormData(this))),
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                            }
-                        })
-                        .then(response => {
+                        const payload = {
+                            name: name,
+                            phone: phone,
+                            service_type: serviceType,
+                            message: message
+                        };
+
+                        try {
+                            const response = await fetch('/api/send-contact', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                },
+                                body: JSON.stringify(payload)
+                            });
+
                             if (response.ok) {
                                 statusDiv.innerHTML = '<span class="text-green-600">Thank you! Your message has been sent successfully.</span>';
                                 statusDiv.classList.remove("hidden");
                                 this.reset();
                             } else {
-                                statusDiv.innerHTML = '<span class="text-red-600">Oops! There was a problem submitting your form.</span>';
+                                const result = await response.json().catch(() => ({}));
+                                console.error('Services form submission failed:', response.status, result);
+                                statusDiv.innerHTML = `<span class="text-red-600">${result.error || 'Oops! There was a problem submitting your form. Please try again.'}</span>`;
                                 statusDiv.classList.remove("hidden");
                             }
-                        })
-                        .catch(error => {
-                            statusDiv.innerHTML = '<span class="text-red-600">Oops! There was a problem submitting your form.</span>';
+                        } catch (error) {
+                            console.error('Network error during services form submission:', error);
+                            statusDiv.innerHTML = '<span class="text-red-600">Network error. Please check your connection and try again.</span>';
                             statusDiv.classList.remove("hidden");
-                        })
-                        .finally(() => {
+                        } finally {
                             submitBtn.innerHTML = originalBtnText;
                             submitBtn.disabled = false;
-                        });
+                        }
                     });
                 </script>
             </div>
