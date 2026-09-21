@@ -1,0 +1,10 @@
+{
+  "buildCommand": null,
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/.netlify/functions/:match*",
+      "destination": "/api/:match*"
+    }
+  ]
+}

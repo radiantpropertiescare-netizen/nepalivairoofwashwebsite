@@ -839,7 +839,7 @@
       var payload = Object.assign({}, answers, { tracking: tracking });
       
       try {
-        const response = await fetch('/.netlify/functions/send-quote', {
+        const response = await fetch('/api/send-quote', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

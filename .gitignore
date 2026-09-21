@@ -20,6 +20,7 @@ Desktop.ini
 # Build & Logs
 dist/
 build/
+.vercel
 *.log
 npm-debug.log*
 
