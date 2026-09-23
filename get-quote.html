@@ -778,6 +778,7 @@
         document.getElementById('progress-fill').style.width = '100%';
         document.getElementById('step-pct').textContent = '100%';
         document.getElementById('step-label').textContent = 'Complete!';
+        renderRecentProjects();
         return;
       }
       currentStep = n;
@@ -875,8 +876,15 @@
       }
     }
 
-    // Render Recent Projects Dummy Images
-    document.addEventListener('DOMContentLoaded', function() {
+    // Render Recent Projects Images on Demand (Success Step)
+    var projectsLoaded = false;
+    function renderRecentProjects() {
+      if (projectsLoaded) return;
+      var container = document.getElementById('recent-projects-container');
+      if (!container || container.children.length > 0) {
+        projectsLoaded = true;
+        return;
+      }
       var projects = [
         { name: 'Roof Restoration', prefix: 'roofrestoration' },
         { name: 'Gutter Cleaning', prefix: 'guttercleaning' },
@@ -885,24 +893,22 @@
         { name: 'House Washing', prefix: 'housewashing' },
         { name: 'Driveway Washing', prefix: 'drivewaywash' }
       ];
-      var container = document.getElementById('recent-projects-container');
-      if(container) {
-        var html = '';
-        projects.forEach(function(proj) {
-          html += '<div>' +
-            '<h4 style="font-family:Manrope,sans-serif;font-weight:700;font-size:1.1rem;color:#c00007;margin:0 0 12px;border-bottom:2px solid #e7e8e9;padding-bottom:8px;">' + proj.name + '</h4>' +
-            '<div class="recent-projects-grid">';
-          for(var i=1; i<=8; i++) {
-            var imgSrc = 'images/' + proj.prefix + i + '-getquote.jpg';
-            html += '<div style="aspect-ratio:16/9;background:#f3f4f5;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #e7e8e9;position:relative;overflow:hidden;">' +
-                    '<img src="' + imgSrc + '" alt="' + proj.name + ' ' + i + '" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'; this.parentElement.innerHTML=\'<span style=\\\'opacity:0.4;font-size:1.5rem\\\'>📸</span>\';">' +
-                    '</div>';
-          }
-          html += '</div></div>';
-        });
-        container.innerHTML = html;
-      }
-    });
+      var html = '';
+      projects.forEach(function(proj) {
+        html += '<div>' +
+          '<h4 style="font-family:Manrope,sans-serif;font-weight:700;font-size:1.1rem;color:#c00007;margin:0 0 12px;border-bottom:2px solid #e7e8e9;padding-bottom:8px;">' + proj.name + '</h4>' +
+          '<div class="recent-projects-grid">';
+        for(var i=1; i<=8; i++) {
+          var imgSrc = 'images/' + proj.prefix + i + '-getquote.jpg';
+          html += '<div style="aspect-ratio:16/9;background:#f3f4f5;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #e7e8e9;position:relative;overflow:hidden;">' +
+                  '<img src="' + imgSrc + '" alt="' + proj.name + ' ' + i + '" loading="lazy" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'; this.parentElement.innerHTML=\'<span style=\\\'opacity:0.4;font-size:1.5rem\\\'>📸</span>\';">' +
+                  '</div>';
+        }
+        html += '</div></div>';
+      });
+      container.innerHTML = html;
+      projectsLoaded = true;
+    }
   </script>
 </body>
 
