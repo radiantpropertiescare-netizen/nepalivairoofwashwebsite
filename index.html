@@ -732,6 +732,10 @@
                                 type="submit">Get Quote <span
                                     class="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span></button>
                         </div>
+                        <div style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; opacity: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
+                            <label for="home-website">Website</label>
+                            <input type="text" id="home-website" name="website" tabindex="-1" autocomplete="off" value="">
+                        </div>
                         <input type="hidden" name="_captcha" value="false">
                     </form>
                     <div id="home-form-status" class="hidden mt-6 text-xl font-bold"></div>
@@ -748,6 +752,7 @@
                             const subject = (this.querySelector('[name="subject"]')?.value || '').trim();
                             const address = (this.querySelector('[name="address"]')?.value || '').trim();
                             const message = (this.querySelector('[name="message"]')?.value || '').trim();
+                            const website = (this.querySelector('[name="website"]')?.value || '').trim();
 
                             if (!name) {
                                 statusDiv.innerHTML = '<span class="text-red-300">Please enter your name.</span>';
@@ -775,7 +780,8 @@
                                 phone: phone,
                                 subject: subject,
                                 address: address,
-                                message: message
+                                message: message,
+                                website: website
                             };
 
                             try {

@@ -262,6 +262,10 @@
                     <div class="md:col-span-2 pt-4">
                         <button class="w-full md:w-auto px-8 py-4 bg-primary text-on-primary rounded-md font-display font-semibold tracking-tight hover:bg-red-800 transition-all duration-200 shadow-sm relative overflow-hidden group" type="submit" style="">Get Quote</button>
                     </div>
+                    <div style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; opacity: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
+                        <label for="contact-website">Website</label>
+                        <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off" value="">
+                    </div>
                 <input type="hidden" name="_captcha" value="false">
                 </form>
                 <div id="contact-form-status" class="hidden mt-6 text-center font-bold text-lg md:col-span-2"></div>
@@ -278,6 +282,7 @@
                         const subject = (this.querySelector('[name="subject"]')?.value || '').trim();
                         const address = (this.querySelector('[name="address"]')?.value || '').trim();
                         const message = (this.querySelector('[name="message"]')?.value || '').trim();
+                        const website = (this.querySelector('[name="website"]')?.value || '').trim();
 
                         if (!name) {
                             statusDiv.innerHTML = '<span class="text-red-600">Please enter your name.</span>';
@@ -305,7 +310,8 @@
                             phone: phone,
                             subject: subject,
                             address: address,
-                            message: message
+                            message: message,
+                            website: website
                         };
 
                         try {

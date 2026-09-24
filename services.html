@@ -434,6 +434,10 @@
                             class="w-full bg-surface-container-high border-none rounded-lg p-3 focus:ring-2 focus:ring-primary/20 transition-all"
                             placeholder="Tell us about your project..." rows="4" name="message"></textarea>
                     </div>
+                    <div style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; opacity: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
+                        <label for="services-website">Website</label>
+                        <input type="text" id="services-website" name="website" tabindex="-1" autocomplete="off" value="">
+                    </div>
                     <button
                         class="w-full bg-primary-container text-on-primary py-4 rounded-xl font-headline font-bold text-lg tracking-tight hover:bg-primary transition-all"
                         style="" type="submit">Get Quote </button>
@@ -450,6 +454,7 @@
                         const phone = (document.getElementById("services-phone")?.value || this.querySelector('[name="phone"]')?.value || '').trim();
                         const service_type = (document.getElementById("services-type")?.value || this.querySelector('[name="service_type"]')?.value || '').trim();
                         const message = (document.getElementById("services-message")?.value || this.querySelector('[name="message"]')?.value || '').trim();
+                        const website = (this.querySelector('[name="website"]')?.value || '').trim();
 
                         if (!name) {
                             statusDiv.innerHTML = '<span class="text-red-600">Please enter your name.</span>';
@@ -476,7 +481,8 @@
                                     name,
                                     phone,
                                     service_type,
-                                    message
+                                    message,
+                                    website
                                 })
                             });
 

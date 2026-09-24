@@ -32,33 +32,103 @@ function formatMultiline(str) {
   return escapeHtml(str).replace(/\r?\n/g, '<br>');
 }
 
+/**
+ * Strips carriage returns and newlines to prevent email header injection.
+ */
+function sanitizeHeader(str) {
+  if (!str) return '';
+  return String(str).replace(/[\r\n]/g, '').trim();
+}
+
+/**
+ * Validates whether the incoming Origin header is permitted.
+ */
+function isValidOrigin(req) {
+  const origin = req.headers['origin'];
+  if (!origin) {
+    const secFetchSite = req.headers['sec-fetch-site'];
+    if (secFetchSite && secFetchSite !== 'same-origin' && secFetchSite !== 'same-site' && secFetchSite !== 'none') {
+      return false;
+    }
+    return true;
+  }
+
+  try {
+    const parsedOrigin = new URL(origin);
+    const originHost = parsedOrigin.host.toLowerCase();
+    const originHref = parsedOrigin.origin.toLowerCase();
+
+    // 1. Approved production origins
+    if (
+      originHref === 'https://www.nepalivairoofwash.com.au' ||
+      originHref === 'https://nepalivairoofwash.com.au'
+    ) {
+      return true;
+    }
+
+    // 2. Exact match with request Host (preserves same-origin Vercel previews and localhost)
+    const hostHeader = (req.headers['x-forwarded-host'] || req.headers['host'] || '').toLowerCase();
+    if (hostHeader && originHost === hostHeader) {
+      return true;
+    }
+
+    return false;
+  } catch (e) {
+    return false;
+  }
+}
+
+const MAX_PAYLOAD_SIZE = 50 * 1024; // 50 KB
+
 module.exports = async (req, res) => {
-  // Only allow POST
+  // 1. Only allow POST
   if (req.method !== 'POST') {
-    res.setHeader('Allow', ['POST']);
-    return res.status(405).json({ error: 'Method Not Allowed' });
+    res.setHeader('Allow', 'POST');
+    return res.status(405).json({ success: false, error: 'Method Not Allowed' });
+  }
+
+  // 2. Origin validation
+  if (!isValidOrigin(req)) {
+    return res.status(403).json({ success: false, error: 'Forbidden' });
+  }
+
+  // 3. Request Content-Type validation
+  const contentType = req.headers['content-type'] || '';
+  if (!contentType.toLowerCase().includes('application/json')) {
+    return res.status(415).json({ success: false, error: 'Unsupported Media Type' });
+  }
+
+  // 4. Request size protection (Content-Length and body size)
+  const contentLength = parseInt(req.headers['content-length'], 10);
+  if (!isNaN(contentLength) && contentLength > MAX_PAYLOAD_SIZE) {
+    return res.status(413).json({ success: false, error: 'Payload Too Large' });
   }
 
   try {
     // Parse request body
     let data;
     if (typeof req.body === 'string') {
+      if (Buffer.byteLength(req.body) > MAX_PAYLOAD_SIZE) {
+        return res.status(413).json({ success: false, error: 'Payload Too Large' });
+      }
       try {
         data = JSON.parse(req.body);
       } catch (err) {
-        return res.status(400).json({ error: 'Invalid JSON payload' });
+        return res.status(400).json({ success: false, error: 'Invalid JSON payload' });
       }
     } else {
       data = req.body || {};
+      if (Buffer.byteLength(JSON.stringify(data)) > MAX_PAYLOAD_SIZE) {
+        return res.status(413).json({ success: false, error: 'Payload Too Large' });
+      }
     }
 
-    // 1. Honeypot check
+    // 5. Honeypot check (silently accept bot submissions)
     if (data.website) {
-      // If honeypot is filled, silently return success to deter bots
-      return res.status(200).json({ message: 'Request received' });
+      return res.status(200).json({ success: true, message: 'Request received' });
     }
 
-    // 2. Extract and validate required fields
+    // 6. Extract fields
     const {
       name,
       email,
@@ -73,45 +143,70 @@ module.exports = async (req, res) => {
       tracking = {}
     } = data;
 
-    if (!name || !email || !phone || !address) {
-      return res.status(400).json({ error: 'Missing required fields' });
+    // 7. Validate required fields
+    const trimmedName = String(name || '').trim();
+    const trimmedEmail = String(email || '').trim();
+    const trimmedPhone = String(phone || '').trim();
+    const trimmedAddress = String(address || '').trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedPhone || !trimmedAddress) {
+      return res.status(400).json({ success: false, error: 'Missing required fields' });
+    }
+
+    if (trimmedName.length > 100) {
+      return res.status(400).json({ success: false, error: 'Name is too long (max 100 characters)' });
     }
 
     // Email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ error: 'Invalid email format' });
+    if (trimmedEmail.length > 254 || !emailRegex.test(trimmedEmail)) {
+      return res.status(400).json({ success: false, error: 'Invalid email format' });
     }
 
-    // 3. Format and sanitize fields for safe HTML rendering
-    const safeName = escapeHtml(name);
-    const safeEmail = escapeHtml(email);
-    const safePhone = escapeHtml(phone);
-    const safeAddress = escapeHtml(address);
-    const safeContactMethod = escapeHtml(contactMethod);
-    const safeRoofType = escapeHtml(roofType);
-    const safeTileDamage = escapeHtml(tileDamage);
-    const safeHasLeak = escapeHtml(hasLeak);
-    const safeNotes = formatMultiline(notes);
+    // Phone format validation
+    const phoneRegex = /^[0-9+\s\-().]{6,30}$/;
+    if (!phoneRegex.test(trimmedPhone)) {
+      return res.status(400).json({ success: false, error: 'Invalid phone number format' });
+    }
+
+    if (trimmedAddress.length > 200) {
+      return res.status(400).json({ success: false, error: 'Address is too long (max 200 characters)' });
+    }
+
+    // Optional fields validation & sanitization
+    const trimmedNotes = String(notes || 'N/A').trim();
+    if (trimmedNotes.length > 5000) {
+      return res.status(400).json({ success: false, error: 'Notes are too long (max 5000 characters)' });
+    }
+
+    const safeName = escapeHtml(trimmedName);
+    const safeEmail = escapeHtml(trimmedEmail);
+    const safePhone = escapeHtml(trimmedPhone);
+    const safeAddress = escapeHtml(trimmedAddress);
+    const safeContactMethod = escapeHtml(String(contactMethod || 'N/A').slice(0, 100));
+    const safeRoofType = escapeHtml(String(roofType || 'N/A').slice(0, 100));
+    const safeTileDamage = escapeHtml(String(tileDamage || 'N/A').slice(0, 100));
+    const safeHasLeak = escapeHtml(String(hasLeak || 'N/A').slice(0, 100));
+    const safeNotes = formatMultiline(trimmedNotes);
 
     const rawServicesList = Array.isArray(services) ? services : (services ? [services] : []);
     const servicesText = rawServicesList.length > 0
-      ? rawServicesList.map(s => escapeHtml(s)).join(', ')
+      ? rawServicesList.slice(0, 20).map(s => escapeHtml(String(s).slice(0, 100))).join(', ')
       : 'None selected';
 
     const safeTracking = {
-      timestamp: escapeHtml(tracking.timestamp || new Date().toISOString()),
-      pageUrl: escapeHtml(tracking.pageUrl || 'N/A'),
-      referrer: escapeHtml(tracking.referrer || 'N/A'),
-      utm_source: escapeHtml(tracking.utm_source || 'N/A'),
-      utm_medium: escapeHtml(tracking.utm_medium || 'N/A'),
-      utm_campaign: escapeHtml(tracking.utm_campaign || 'N/A'),
-      utm_content: escapeHtml(tracking.utm_content || 'N/A'),
-      utm_term: escapeHtml(tracking.utm_term || 'N/A'),
-      fbclid: escapeHtml(tracking.fbclid || 'N/A')
+      timestamp: escapeHtml(String(tracking?.timestamp || new Date().toISOString()).slice(0, 50)),
+      pageUrl: escapeHtml(String(tracking?.pageUrl || 'N/A').slice(0, 300)),
+      referrer: escapeHtml(String(tracking?.referrer || 'N/A').slice(0, 300)),
+      utm_source: escapeHtml(String(tracking?.utm_source || 'N/A').slice(0, 100)),
+      utm_medium: escapeHtml(String(tracking?.utm_medium || 'N/A').slice(0, 100)),
+      utm_campaign: escapeHtml(String(tracking?.utm_campaign || 'N/A').slice(0, 100)),
+      utm_content: escapeHtml(String(tracking?.utm_content || 'N/A').slice(0, 100)),
+      utm_term: escapeHtml(String(tracking?.utm_term || 'N/A').slice(0, 100)),
+      fbclid: escapeHtml(String(tracking?.fbclid || 'N/A').slice(0, 100))
     };
 
-    // 4. Construct email HTML
+    // 8. Construct email HTML
     const htmlContent = `
       <h2>New Roof Quote Request</h2>
       <p>A new quote request has been submitted from <strong>Nepali Vai Roof Wash</strong>.</p>
@@ -150,24 +245,28 @@ module.exports = async (req, res) => {
       </ul>
     `;
 
-    // 5. Send Email via Resend
+    // 9. Send Email via Resend
     const resend = getResendClient();
     const { data: resendData, error } = await resend.emails.send({
       from: process.env.QUOTE_FROM_EMAIL || 'quotes@nepalivairoofwash.com.au',
       to: [process.env.QUOTE_TO_EMAIL || 'nepalivairoofwash@gmail.com'],
-      reply_to: email,
+      reply_to: sanitizeHeader(trimmedEmail),
       subject: 'New Roof Quote Request - Nepali Vai Roof Wash',
       html: htmlContent,
     });
 
     if (error) {
-      console.error('Resend API Error:', error);
-      return res.status(500).json({ error: 'Failed to send email' });
+      console.error('Resend send-quote error:', {
+        name: error.name,
+        message: error.message || error.error,
+        statusCode: error.statusCode
+      });
+      return res.status(500).json({ success: false, error: 'Unable to send message' });
     }
 
-    return res.status(200).json({ message: 'Email sent successfully', id: resendData?.id });
+    return res.status(200).json({ success: true, message: 'Email sent successfully', id: resendData?.id });
   } catch (error) {
-    console.error('Server Error:', error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Server Error:', error.message || error);
+    return res.status(500).json({ success: false, error: 'Unable to send message' });
   }
 };

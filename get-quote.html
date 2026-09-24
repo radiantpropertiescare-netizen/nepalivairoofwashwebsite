@@ -544,9 +544,9 @@
         <p style="color:#5d6b82;margin:0;font-size:.95rem">We'll use this to send your free quote. 100% no spam.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:16px">
-        <div style="display:none;" aria-hidden="true">
+        <div style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; opacity: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
           <label for="f-website">Website</label>
-          <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+          <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" value="">
         </div>
         <div>
           <label
@@ -833,8 +833,7 @@
       if (!address) { document.getElementById('f-address').classList.add('error'); hasErr = true; }
       if (hasErr) { showToast('Please fill in all required fields.'); return; }
       
-      answers.name = name; answers.email = email; answers.phone = phone; answers.address = address; answers.notes = notes;
-      if (website) { answers.website = website; }
+      answers.name = name; answers.email = email; answers.phone = phone; answers.address = address; answers.notes = notes; answers.website = website;
       
       isSubmitting = true;
       var btn = document.getElementById('submit-btn');
