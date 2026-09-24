@@ -222,13 +222,34 @@
                         Expert Roof Restoration That Protects and Extends the Life of Your Home.</h1>
                     <p class="text-lg text-on-surface/70 max-w-lg leading-relaxed">
                         Extend the life of your roof, improve its appearance, and avoid costly replacements with trusted
-                        local specialists.
+                        local specialists serving Sydney and surrounding areas.
                     </p>
-                    <div class="flex flex-wrap gap-4">
+                    <div class="flex flex-wrap items-center gap-4">
                         <button
                             class="bg-primary-container hover:bg-primary text-on-primary px-8 py-4 rounded-xl font-headline font-bold text-base transition-all flex items-center gap-2 shadow-xl shadow-primary/10"
-                            onclick="window.location.href='/get-quote'">Get Quote <span
+                            onclick="window.location.href='/get-quote'">Request a Free Quote <span
                                 class="material-symbols-outlined">arrow_forward</span></button>
+                        <a href="tel:0481610158"
+                            class="inline-flex items-center gap-2 px-6 py-4 rounded-xl font-headline font-bold text-base text-[#191c1d] bg-white border border-outline-variant/30 hover:border-primary hover:text-primary transition-all shadow-sm"
+                            aria-label="Call Nepali Vai Roof Wash on 0481 610 158">
+                            <span class="material-symbols-outlined text-[#c00007]">phone</span>
+                            <span>0481 610 158</span>
+                        </a>
+                    </div>
+                    <!-- Trust Micro-Points -->
+                    <div class="flex flex-wrap items-center gap-y-2 gap-x-6 pt-2 text-xs font-headline font-semibold text-on-surface/70">
+                        <span class="inline-flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-green-600 text-base">check_circle</span>
+                            Free, No-Obligation Quotes
+                        </span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-green-600 text-base">check_circle</span>
+                            Serving Sydney &amp; Surrounds
+                        </span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-green-600 text-base">check_circle</span>
+                            Fully Insured Staff
+                        </span>
                     </div>
                 </div>
                 <div class="relative group">
@@ -474,10 +495,11 @@
                             <span class="material-symbols-outlined text-primary font-bold">unfold_more</span>
                         </div>
                     </div>
+                    <p class="text-center text-xs text-on-surface-variant font-medium mt-3">Drag slider left or right to compare before and after restoration</p>
                 </div>
                 <div class="space-y-6">
-                    <h2 class="text-4xl font-headline font-extrabold tracking-tight">Ready to refresh your home's crown?
-                    </h2>
+                    <span class="text-xs font-label font-bold uppercase tracking-[0.2em] text-primary">Real Restoration Results</span>
+                    <h2 class="text-4xl font-headline font-extrabold tracking-tight">See the Transformation: Before &amp; After</h2>
                     <p class="text-on-surface/70 leading-relaxed text-lg">Our multi-stage restoration process removes
                         decades of environmental buildup without damaging the structure. We use specialized surfactants
                         that target root systems of organic growth, ensuring a longer-lasting clean.</p>
@@ -495,6 +517,12 @@
                             <span class="font-bold">UV reflective protective coating</span>
                         </li>
                     </ul>
+                    <div class="pt-2">
+                        <a href="/get-quote" class="inline-flex items-center gap-2 bg-[#e52920] hover:bg-[#c00007] text-white px-6 py-3 rounded-xl font-headline font-bold text-sm tracking-wide transition-all shadow-md">
+                            <span>Request a Free Quote</span>
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -625,6 +653,32 @@
                 </div>
             </div>
         </section>
+        <!-- Areas We Service Section -->
+        <section class="py-16 bg-surface-container-lowest px-8 border-t border-outline-variant/10">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto space-y-4">
+                    <span class="text-sm font-label font-bold uppercase tracking-[0.2em] text-primary">Local Service Area</span>
+                    <h2 class="text-3xl md:text-4xl font-headline font-extrabold text-on-surface">Areas We Service</h2>
+                    <p class="text-on-surface/70 leading-relaxed text-base md:text-lg">
+                        Nepali Vai Roof Wash proudly provides professional roof washing, painting, and restoration services across <strong>Sydney and surrounding areas</strong>. From residential tile restoration to metal roof maintenance, our local team delivers prompt on-site inspections and dependable workmanship across the Greater Sydney region.
+                    </p>
+                    <div class="pt-4 flex flex-wrap justify-center items-center gap-6 text-sm font-headline font-semibold text-on-surface-variant">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-xl">location_on</span>
+                            <span>Sydney, NSW</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-xl">home_repair_service</span>
+                            <span>On-Site Roof Inspections</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-xl">call</span>
+                            <a href="tel:0481610158" class="text-primary hover:underline">0481 610 158</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Final CTA & Contact Form (Matches Image 10) -->
         <section class="py-24 px-8 bg-surface">
             <div
@@ -636,7 +690,7 @@
                     <h2 class="text-4xl md:text-6xl font-headline font-black text-on-primary leading-tight">Ready to
                         refresh your home's crown?</h2>
                     <p class="text-on-primary/80 text-lg max-w-2xl mx-auto">Get an instant estimate for your roof wash
-                        or restoration project today. No obligations, just honest pricing.</p>
+                        or restoration project today across Sydney and surrounding areas. No obligations, just honest pricing.</p>
                     <form id="home-contact-form" class="max-w-4xl mx-auto space-y-4 mt-12 text-left"
                         action="/api/send-contact" method="POST">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
