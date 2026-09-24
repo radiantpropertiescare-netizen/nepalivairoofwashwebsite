@@ -16,6 +16,9 @@
     <meta name="twitter:description" content="Premium Roof Care & Preservation in Sydney. Expert roof washing, painting, and repointing.">
     <meta name="twitter:image" content="https://www.nepalivairoofwash.com.au/images/Blueroof.JPG">
     <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -241,16 +244,37 @@
                 const icon = btn.querySelector('.material-symbols-outlined');
                 let isOpen = false;
 
+                function openMenu() {
+                    isOpen = true;
+                    menu.classList.remove('translate-x-full');
+                    if (icon) icon.textContent = 'close';
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeMenu() {
+                    isOpen = false;
+                    menu.classList.add('translate-x-full');
+                    if (icon) icon.textContent = 'menu';
+                    document.body.style.overflow = '';
+                }
+
                 btn.addEventListener('click', () => {
-                    isOpen = !isOpen;
                     if (isOpen) {
-                        menu.classList.remove('translate-x-full');
-                        icon.textContent = 'close';
-                        document.body.style.overflow = 'hidden';
+                        closeMenu();
                     } else {
-                        menu.classList.add('translate-x-full');
-                        icon.textContent = 'menu';
-                        document.body.style.overflow = '';
+                        openMenu();
+                    }
+                });
+
+                menu.querySelectorAll('a, button').forEach(el => {
+                    el.addEventListener('click', () => {
+                        closeMenu();
+                    });
+                });
+
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 1024 && isOpen) {
+                        closeMenu();
                     }
                 });
             });

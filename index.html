@@ -16,6 +16,9 @@
     <meta name="twitter:description" content="Premium Roof Care & Preservation in Sydney. Expert roof washing, painting, and repointing.">
     <meta name="twitter:image" content="https://www.nepalivairoofwash.com.au/images/Blueroof.JPG">
     <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -190,16 +193,37 @@
                 const icon = btn.querySelector('.material-symbols-outlined');
                 let isOpen = false;
 
+                function openMenu() {
+                    isOpen = true;
+                    menu.classList.remove('translate-x-full');
+                    if (icon) icon.textContent = 'close';
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeMenu() {
+                    isOpen = false;
+                    menu.classList.add('translate-x-full');
+                    if (icon) icon.textContent = 'menu';
+                    document.body.style.overflow = '';
+                }
+
                 btn.addEventListener('click', () => {
-                    isOpen = !isOpen;
                     if (isOpen) {
-                        menu.classList.remove('translate-x-full');
-                        icon.textContent = 'close';
-                        document.body.style.overflow = 'hidden';
+                        closeMenu();
                     } else {
-                        menu.classList.add('translate-x-full');
-                        icon.textContent = 'menu';
-                        document.body.style.overflow = '';
+                        openMenu();
+                    }
+                });
+
+                menu.querySelectorAll('a, button').forEach(el => {
+                    el.addEventListener('click', () => {
+                        closeMenu();
+                    });
+                });
+
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 1024 && isOpen) {
+                        closeMenu();
                     }
                 });
             });
@@ -464,7 +488,7 @@
         <!-- Before/After Slider Section -->
         <section class="py-24 bg-white px-8 overflow-hidden">
             <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-                <div
+                <div id="before-after-slider"
                     class="relative aspect-[1/1] rounded-2xl overflow-hidden shadow-2xl group select-none bg-surface-container max-w-lg mx-auto md:mx-0">
                     <!-- After Image (Bottom Layer) -->
                     <img alt="Roof After Restoration" class="absolute inset-0 w-full h-full object-cover"
@@ -473,18 +497,18 @@
                         class="absolute top-1/2 -translate-y-1/2 text-white px-3 py-1 rounded text-xs font-black tracking-widest z-10 pointer-events-none bg-primary/90 right-4">
                         AFTER</div>
                     <!-- Before Image (Top Layer) -->
-                    <div class="absolute inset-0 w-1/2 overflow-hidden border-r-2 border-white shadow-[10px_0_15px_-5px_rgba(0,0,0,0.3)]"
-                        id="after-image-container">
-                        <img alt="Roof Before Restoration"
-                            class="absolute inset-0 w-[200%] h-full max-w-none object-cover"
-                            src="images/before-home.webp" style="width: calc(200%);" loading="lazy" decoding="async" width="1024" height="1024">
+                    <div class="absolute inset-0 overflow-hidden border-r-2 border-white shadow-[10px_0_15px_-5px_rgba(0,0,0,0.3)]"
+                        id="after-image-container" style="width: 50%;">
+                        <img id="before-slider-img" alt="Roof Before Restoration"
+                            class="absolute top-0 left-0 h-full max-w-none object-cover"
+                            src="images/before-home.webp" loading="lazy" decoding="async" width="1024" height="1024">
                         <div
                             class="absolute top-1/2 -translate-y-1/2 text-white px-3 py-1 rounded text-xs font-black tracking-widest z-10 pointer-events-none bg-black/50 left-4">
                             BEFORE</div>
                     </div>
                     <!-- Slider Control -->
-                    <input class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30" max="100" min="0"
-                        oninput="const container = document.getElementById('after-image-container'); const img = container.querySelector('img'); const handle = document.getElementById('slider-handle'); container.style.width = this.value + '%'; img.style.width = (10000 / this.value) + '%'; handle.style.left = this.value + '%'; if(this.value == 0) img.style.width = '100%';"
+                    <input id="before-after-input" aria-label="Compare before and after roof restoration"
+                        class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30" max="100" min="0" step="0.5"
                         type="range" value="50">
                     <!-- Visual Handle -->
                     <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-1 bg-white z-20 pointer-events-none"
@@ -494,8 +518,49 @@
                             <span class="material-symbols-outlined text-primary font-bold">unfold_more</span>
                         </div>
                     </div>
-                    <p class="text-center text-xs text-on-surface-variant font-medium mt-3">Drag slider left or right to compare before and after restoration</p>
                 </div>
+                <script>
+                    (function initBeforeAfterSlider() {
+                        const slider = document.getElementById('before-after-slider');
+                        const input = document.getElementById('before-after-input');
+                        const container = document.getElementById('after-image-container');
+                        const beforeImg = document.getElementById('before-slider-img');
+                        const handle = document.getElementById('slider-handle');
+
+                        if (!slider || !input || !container || !beforeImg || !handle) return;
+
+                        function updateSlider(val) {
+                            let num = parseFloat(val);
+                            if (isNaN(num)) num = 50;
+                            const clamped = Math.max(0, Math.min(100, num));
+
+                            const sliderWidth = slider.clientWidth || slider.offsetWidth || 0;
+                            if (sliderWidth > 0) {
+                                beforeImg.style.width = sliderWidth + 'px';
+                            } else {
+                                beforeImg.style.width = '100%';
+                            }
+
+                            container.style.width = clamped + '%';
+                            handle.style.left = clamped + '%';
+                        }
+
+                        input.addEventListener('input', (e) => {
+                            updateSlider(e.target.value);
+                        });
+
+                        window.addEventListener('resize', () => {
+                            updateSlider(input.value);
+                        });
+
+                        if (document.readyState === 'loading') {
+                            document.addEventListener('DOMContentLoaded', () => updateSlider(input.value));
+                        } else {
+                            updateSlider(input.value);
+                        }
+                        window.addEventListener('load', () => updateSlider(input.value));
+                    })();
+                </script>
                 <div class="space-y-6">
                     <span class="text-xs font-label font-bold uppercase tracking-[0.2em] text-primary">Real Restoration Results</span>
                     <h2 class="text-4xl font-headline font-extrabold tracking-tight">See the Transformation: Before &amp; After</h2>
