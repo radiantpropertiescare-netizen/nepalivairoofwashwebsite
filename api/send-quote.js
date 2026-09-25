@@ -138,7 +138,7 @@ module.exports = async (req, res) => {
       tileDamage = 'N/A',
       hasLeak = 'N/A',
       services = [],
-      contactMethod = 'N/A',
+      contactMethod,
       notes = 'N/A',
       tracking = {}
     } = data;
@@ -183,7 +183,10 @@ module.exports = async (req, res) => {
     const safeEmail = escapeHtml(trimmedEmail);
     const safePhone = escapeHtml(trimmedPhone);
     const safeAddress = escapeHtml(trimmedAddress);
-    const safeContactMethod = escapeHtml(String(contactMethod || 'N/A').slice(0, 100));
+    const trimmedContactMethod = String(contactMethod || '').trim();
+    const contactMethodRow = (trimmedContactMethod && trimmedContactMethod !== 'N/A')
+      ? `\n        <li><strong>Preferred Contact Method:</strong> ${escapeHtml(trimmedContactMethod.slice(0, 100))}</li>`
+      : '';
     const safeRoofType = escapeHtml(String(roofType || 'N/A').slice(0, 100));
     const safeTileDamage = escapeHtml(String(tileDamage || 'N/A').slice(0, 100));
     const safeHasLeak = escapeHtml(String(hasLeak || 'N/A').slice(0, 100));
@@ -216,8 +219,7 @@ module.exports = async (req, res) => {
         <li><strong>Full Name:</strong> ${safeName}</li>
         <li><strong>Email:</strong> ${safeEmail}</li>
         <li><strong>Phone Number:</strong> ${safePhone}</li>
-        <li><strong>Full Address:</strong> ${safeAddress}</li>
-        <li><strong>Preferred Contact Method:</strong> ${safeContactMethod}</li>
+        <li><strong>Full Address:</strong> ${safeAddress}</li>${contactMethodRow}
       </ul>
 
       <h3>Project Details</h3>
