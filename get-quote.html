@@ -16,7 +16,8 @@
   <meta name="twitter:description" content="Get a free, no-obligation quote for premium roof care in Sydney.">
   <meta name="twitter:image" content="https://www.nepalivairoofwash.com.au/images/Blueroof.JPG">
   <meta name="theme-color" content="#E52920">
-  <link rel="icon" type="image/png" href="/images/icon-192.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192.png">
   <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -323,6 +324,11 @@
 <body style="background:#f8f9fa;font-family:Inter,sans-serif;min-height:100vh;margin:0">
   <div class="toast" id="toast">Please select the options.</div>
   <div style="max-width:640px;margin:0 auto;padding:16px 16px 40px">
+    <!-- Compact Brand Logo (Questionnaire steps only) -->
+    <div id="quote-logo-wrapper" style="text-align:center;margin-bottom:10px">
+      <img src="images/logo.png" alt="Nepali Vai Roof Wash Logo" style="width:58px;height:58px;object-fit:contain;display:inline-block;" width="58" height="58">
+    </div>
+
     <!-- STEP 1 -->
     <div class="step active" id="step-1">
       <div style="margin-bottom:20px">
@@ -720,6 +726,10 @@
       document.querySelectorAll('.step').forEach(function (s) { s.classList.remove('active'); });
       var el = document.getElementById('step-' + n);
       if (el) { el.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+      var logoWrap = document.getElementById('quote-logo-wrapper');
+      if (logoWrap) {
+        logoWrap.style.display = (n === 'success') ? 'none' : 'block';
+      }
       if (n === 'success') {
         renderRecentProjects();
         return;
